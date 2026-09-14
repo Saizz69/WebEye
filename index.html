@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebEye — Maritime SAR Satellite Oil Spill Detection & AIS Attribution Console (SIH26143)</title>
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="styles/main.css">
+  
+  <!-- Modern Typography from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- TOP APP HEADER -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="brand-logo" onclick="window.appController.loadScenario('OS-GOMMC-20230924')">
+        <div class="brand-icon-eye"></div>
+        <span class="brand-title">WEB<span>EYE</span></span>
+      </div>
+
+      <nav class="nav-tabs">
+        <button class="nav-tab-btn active" data-tab="investigate">INVESTIGATE</button>
+        <button class="nav-tab-btn" data-tab="drift">DRIFT</button>
+        <button class="nav-tab-btn" data-tab="vessels">VESSELS</button>
+        <button class="nav-tab-btn" data-tab="method">METHOD</button>
+        <button class="nav-tab-btn" data-tab="data">DATA</button>
+      </nav>
+    </div>
+
+    <div class="header-right">
+      <!-- THEME SELECTOR -->
+      <div class="theme-select-wrap">
+        <select id="theme-selector">
+          <option value="default">🎨 Tactical Obsidian</option>
+          <option value="theme-emerald">🌲 Cyber Emerald</option>
+          <option value="theme-abyss">🌊 Deep Abyss Navy</option>
+          <option value="theme-amber">⚡ High-Contrast Amber</option>
+        </select>
+      </div>
+
+      <div class="search-box">
+        <svg class="search-icon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+        </svg>
+        <input type="text" id="search-vessel-input" placeholder="Search MMSI or vessel name">
+      </div>
+
+      <div class="utc-clock" id="header-utc-clock">UTC 19:26:57</div>
+    </div>
+  </header>
+
+  <!-- MAIN THREE-COLUMN WORKSPACE CONTAINER -->
+  <div class="app-container">
+
+    <!-- LEFT RAIL: SCENES, PARAMS, SUMMARY, DATA SOURCES -->
+    <aside class="left-rail">
+      
+      <!-- SCENES SELECTOR -->
+      <div class="rail-section">
+        <div class="rail-section-title">SCENES</div>
+        <div class="scene-cards-list">
+          
+          <div class="scene-card active" data-scene-id="OS-GOMMC-20230924">
+            <div class="scene-card-header">
+              <div class="scene-card-title">Gulf of Mexico, MC20 chronic...</div>
+              <span class="ais-badge recorded">RECORDED AIS</span>
+            </div>
+            <div class="scene-card-time">2023-09-24 00:02:27 UTC</div>
+          </div>
+
+          <div class="scene-card" data-scene-id="OS-MUMBAI-20240313">
+            <div class="scene-card-header">
+              <div class="scene-card-title">Arabian Sea, Mumbai offshor...</div>
+              <span class="ais-badge simulated">SIMULATED AIS</span>
+            </div>
+            <div class="scene-card-time">2024-03-13 01:03:42 UTC</div>
+          </div>
+
+          <div class="scene-card" data-scene-id="OS-CASPIAN-20231014">
+            <div class="scene-card-header">
+              <div class="scene-card-title">Caspian Sea, Baku offshore field</div>
+              <span class="ais-badge simulated">SIMULATED AIS</span>
+            </div>
+            <div class="scene-card-time">2023-10-14 02:44:45 UTC</div>
+          </div>
+
+          <div class="scene-card" data-scene-id="OS-SANTABARBARA-20230829">
+            <div class="scene-card-header">
+              <div class="scene-card-title">Santa Barbara Channel natu...</div>
+              <span class="ais-badge recorded">RECORDED AIS</span>
+            </div>
+            <div class="scene-card-time">2023-08-29 01:59:10 UTC</div>
+          </div>
+
+          <div class="scene-card" data-scene-id="OS-CLEAN-INDIANOCEAN">
+            <div class="scene-card-header">
+              <div class="scene-card-title">Indian Ocean Patrol, Clean...</div>
+              <span class="ais-badge recorded">RECORDED AIS</span>
+            </div>
+            <div class="scene-card-time">2024-05-18 04:12:00 UTC</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- RUN PARAMETERS -->
+      <div class="rail-section">
+        <div class="rail-section-title">RUN PARAMETERS</div>
+        <div class="param-grid">
+          <div class="param-field">
+            <label>HINDCAST H</label>
+            <input type="number" id="param-hindcast-h" value="48">
+          </div>
+          <div class="param-field">
+            <label>FORECAST H</label>
+            <input type="number" id="param-forecast-h" value="36">
+          </div>
+          <div class="param-field">
+            <label>SEARCH KM</label>
+            <input type="number" id="param-search-km" value="10">
+          </div>
+          <div class="param-field">
+            <label>WINDOW H</label>
+            <input type="number" id="param-window-h" value="3">
+          </div>
+        </div>
+
+        <button id="btn-run-analysis" class="btn-primary">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+          <span>Run analysis</span>
+        </button>
+
+        <label class="checkbox-label">
+          <input type="checkbox" id="checkbox-probe-point">
+          <span>Probe a point instead. Click the map to run drift and AIS anywhere. No detection.</span>
+        </label>
+      </div>
+
+      <!-- RUN SUMMARY -->
+      <div class="rail-section">
+        <div class="rail-section-title">RUN SUMMARY</div>
+        <div class="summary-metric-grid">
+          <div class="summary-card">
+            <div class="summary-val" id="summary-oil-polygons">29</div>
+            <div class="summary-label">OIL POLYGONS</div>
+          </div>
+          <div class="summary-card">
+            <div class="summary-val" id="summary-total-area">5.15</div>
+            <div class="summary-label">TOTAL AREA KM²</div>
+          </div>
+          <div class="summary-card">
+            <div class="summary-val" id="summary-vessels-scored">10</div>
+            <div class="summary-label">VESSELS SCORED</div>
+          </div>
+          <div class="summary-card">
+            <div class="summary-val" id="summary-drift-age">11.0</div>
+            <div class="summary-label">AGE H, DRIFT PROXY</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DATA SOURCES -->
+      <div class="rail-section" style="margin-top: auto;">
+        <div class="rail-section-title">DATA SOURCES</div>
+        <table class="data-source-table">
+          <tbody>
+            <tr><td>Detector</td><td>U-Net</td></tr>
+            <tr><td>Metocean cubes</td><td>5</td></tr>
+            <tr><td>AIS rows</td><td>441,668</td></tr>
+            <tr><td>AIS vessels</td><td>638</td></tr>
+            <tr><td>Scenes indexed</td><td>5</td></tr>
+            <tr><td>Run history</td><td>73.6 MB</td></tr>
+            <tr><td>Network</td><td class="text-green font-semibold">not used at runtime</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </aside>
+
+    <!-- CENTER WORKSPACE: MAP & TIMELINE & TELEMETRY -->
+    <main class="center-workspace">
+      
+      <!-- MAP HEADER BANNER -->
+      <div class="map-header-banner">
+        <div class="banner-left">
+          <span class="scenario-title-id" id="header-scenario-id">OS-GOMMC-20230924</span>
+          <span class="status-badge active" id="header-status-badge">ACTIVE</span>
+          <span class="scenario-subtitle" id="header-scenario-subtitle">
+            Radar pass 2023-09-24 00:02:27 UTC • Sensor Sentinel-1 IW GRD RTC • Detector U-Net • Confidence 0.73
+          </span>
+        </div>
+        <div class="coords-badge" id="header-coords-badge">28.9384° N, 88.9335° W</div>
+      </div>
+
+      <!-- MAP CANVAS -->
+      <div class="map-container-relative">
+        <div id="map-canvas"></div>
+
+        <!-- FLOATING LAYERS CARD -->
+        <div class="floating-layers-card">
+          <div class="layers-card-title">LAYERS</div>
+          
+          <div class="layer-item">
+            <label class="layer-label-wrap">
+              <input type="checkbox" class="layer-checkbox" data-layer="optical">
+              <span>Optical (S2)</span>
+            </label>
+          </div>
+
+          <div class="layer-item">
+            <label class="layer-label-wrap">
+              <input type="checkbox" class="layer-checkbox" data-layer="sarImage" checked>
+              <span>SAR image</span>
+            </label>
+          </div>
+
+          <div class="layer-item">
+            <label class="layer-label-wrap">
+              <input type="checkbox" class="layer-checkbox" data-layer="classMask">
+              <span>Class mask</span>
+            </label>
+          </div>
+
+          <div class="layer-item">
+            <label class="layer-label-wrap">
+              <input type="checkbox" class="layer-checkbox" data-layer="oilPolygons" checked>
+              <span>Oil polygons</span>
+            </label>
+            <div class="layer-swatch oil"></div>
+          </div>
+
+          <div class="layer-item">
+            <label class="layer-label-wrap">
+              <input type="checkbox" class="layer-checkbox" data-layer="lookAlikes" checked>
+              <span>Look-alikes</span>
+            </label>
+            <div class="layer-swatch lookalike"></div>
+          </div>
+
+          <div class="layer-item">
+            <label class="layer-label-wrap">
+              <input type="checkbox" class="layer-checkbox" data-layer="backtrack" checked>
+              <span>Backtrack</span>
+            </label>
+            <div class="layer-swatch backtrack"></div>
+          </div>
+
+          <div class="layer-item">
+            <label class="layer-label-wrap">
+              <input type="checkbox" class="layer-checkbox" data-layer="hindcastCone" checked>
+              <span>Hindcast cone</span>
+            </label>
+            <div class="layer-swatch cone"></div>
+          </div>
+
+          <div class="layer-item">
+            <label class="layer-label-wrap">
+              <input type="checkbox" class="layer-checkbox" data-layer="releaseZone" checked>
+              <span>Release zone</span>
+            </label>
+            <div class="layer-swatch oil"></div>
+          </div>
+
+          <div class="layer-item">
+            <label class="layer-label-wrap">
+              <input type="checkbox" class="layer-checkbox" data-layer="forecastTrack" checked>
+              <span>Forecast track</span>
+            </label>
+            <div class="layer-swatch forecast"></div>
+          </div>
+
+          <div class="layer-item">
+            <label class="layer-label-wrap">
+              <input type="checkbox" class="layer-checkbox" data-layer="forecastCone" checked>
+              <span>Forecast cone</span>
+            </label>
+            <div class="layer-swatch forecast"></div>
+          </div>
+
+          <div class="layer-item">
+            <label class="layer-label-wrap">
+              <input type="checkbox" class="layer-checkbox" data-layer="aisTracks" checked>
+              <span>AIS tracks</span>
+            </label>
+            <div class="layer-swatch forecast"></div>
+          </div>
+
+          <div class="layer-item">
+            <label class="layer-label-wrap">
+              <input type="checkbox" class="layer-checkbox" data-layer="vesselMarks" checked>
+              <span>Vessel marks</span>
+            </label>
+            <div class="layer-swatch vessel"></div>
+          </div>
+
+          <div class="layer-item">
+            <label class="layer-label-wrap">
+              <input type="checkbox" class="layer-checkbox" data-layer="backgroundTraffic" checked>
+              <span>Nearby Traffic</span>
+            </label>
+            <div class="layer-swatch bg-vessels"></div>
+          </div>
+
+        </div>
+
+        <!-- FLOATING CURSOR READOUT -->
+        <div class="floating-coords-bar">
+          <span id="cursor-lat">lat 28.9384° N</span>
+          <span id="cursor-lon">lon 88.9335° W</span>
+        </div>
+
+      </div>
+
+      <!-- TIMELINE / SCRUBBER BAR -->
+      <div class="timeline-bar">
+        <button id="btn-play-pause" class="btn-timeline-play">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+          <span>PLAY</span>
+        </button>
+
+        <button id="btn-snap-radar" class="btn-radar-snap">Radar pass</button>
+
+        <div class="timeline-time-readout" id="timeline-time-display">2023-09-23 18:58 UTC</div>
+
+        <div class="timeline-slider-wrap">
+          <input type="range" id="timeline-slider" class="timeline-slider" min="0" max="100" step="0.1" value="57.1">
+        </div>
+
+        <div class="timeline-legend">
+          <span class="legend-dot hindcast">--- hindcast</span>
+          <span class="legend-dot forecast">--- forecast</span>
+        </div>
+      </div>
+
+      <!-- BOTTOM TELEMETRY DRAWER -->
+      <div class="bottom-telemetry-drawer">
+        
+        <!-- COL 1: PIPELINE LATENCY -->
+        <div class="telemetry-col">
+          <div class="telemetry-col-title">
+            <span>PIPELINE</span>
+            <span class="font-mono text-cyan" id="pipeline-total-time">51.8 s</span>
+          </div>
+          <div class="pipeline-stage-list" id="pipeline-stage-list"></div>
+        </div>
+
+        <!-- COL 2: ENVIRONMENTAL CONDITIONS -->
+        <div class="telemetry-col">
+          <div class="telemetry-col-title">ENVIRONMENTAL CONDITIONS</div>
+          <div class="env-conditions-grid">
+            <div class="env-cell">
+              <div class="env-cell-val" id="env-wind-val">4.3 m/s</div>
+              <div class="env-cell-label">MEAN 10 M WIND</div>
+            </div>
+            <div class="env-cell">
+              <div class="env-cell-val" id="env-current-val">0.18 m/s</div>
+              <div class="env-cell-label">MEAN SURFACE CURRENT</div>
+            </div>
+            <div class="env-cell">
+              <div class="env-cell-val" id="env-resolution-val">5 x 5 pts</div>
+              <div class="env-cell-label">FIELD RESOLUTION</div>
+            </div>
+            <div class="env-cell">
+              <div class="env-cell-val" id="env-span-val">144 h</div>
+              <div class="env-cell-label">CUBE TIME SPAN</div>
+            </div>
+          </div>
+          <div class="env-source-caption" id="env-source-detail">
+            Open-Meteo ERA5 10 m wind + CMEMS GLOBAL_ANALYSISFORECAST_PHY_001_024 currents (cached 2026-09-05)
+          </div>
+        </div>
+
+        <!-- COL 3: HINDCAST UNCERTAINTY GRAPH -->
+        <div class="telemetry-col">
+          <div class="telemetry-col-title">HINDCAST UNCERTAINTY</div>
+          <div class="hindcast-canvas-wrap">
+            <canvas id="hindcast-chart-canvas"></canvas>
+          </div>
+        </div>
+
+        <!-- COL 4: EVIDENCE FILTER COUNTERS -->
+        <div class="telemetry-col">
+          <div class="telemetry-col-title">POTENTIAL SOURCES</div>
+          <table class="evidence-table">
+            <tbody>
+              <tr><td colspan="2" style="font-weight: 800; color: var(--text-muted);">EVIDENCE</td></tr>
+              <tr><td>Oil polygons</td><td id="ev-oil-polys">29</td></tr>
+              <tr><td>Look-alikes excluded</td><td id="ev-lookalikes">0</td></tr>
+              <tr><td>Optical chips compared</td><td id="ev-optical">1</td></tr>
+              <tr><td>Vessels in the box</td><td id="ev-in-box">20</td></tr>
+              <tr><td>Passed the filter</td><td id="ev-passed">12</td></tr>
+              <tr><td>Ensemble members</td><td id="ev-ensemble">50</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- RIGHT PANEL: INVESTIGATE, DRIFT, VESSELS, METHOD, DATA -->
+    <aside class="right-panel">
+      <div id="tab-pane-investigate" class="tab-pane"></div>
+      <div id="tab-pane-drift" class="tab-pane hidden"></div>
+      <div id="tab-pane-vessels" class="tab-pane hidden"></div>
+      <div id="tab-pane-method" class="tab-pane hidden"></div>
+      <div id="tab-pane-data" class="tab-pane hidden"></div>
+    </aside>
+
+  </div>
+
+  <!-- VESSEL INSPECTION MODAL -->
+  <div id="vessel-detail-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title" id="modal-vessel-title">WEBEYE AUDIT DOSSIER</div>
+        <button class="modal-close-btn" id="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-vessel-body"></div>
+    </div>
+  </div>
+
+  <!-- TRANSIENT SYSTEM TOAST NOTIFICATION -->
+  <div id="system-toast" class="system-toast">WebEye Console Initialized.</div>
+
+  <!-- JAVASCRIPT MODULES -->
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script src="js/data-store.js"></script>
+  <script src="js/attribution-engine.js"></script>
+  <script src="js/drift-engine.js"></script>
+  <script src="js/chart-engine.js"></script>
+  <script src="js/map-engine.js"></script>
+  <script src="js/timeline.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
