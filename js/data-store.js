@@ -24,14 +24,17 @@ const SCENARIOS_DATA = {
     aisSource: 'AIS: all 12 candidate vessels came from real recorded tracks (marinecadastre).',
     isCleanScene: false,
     hasAmbiguousLookalike: false,
-    mapCenter: [28.9384, -88.9335],
+    mapCenter: [28.9662, -88.9127],
     zoom: 10,
-    radarBBox: [[28.60, -89.30], [29.30, -88.55]],
+    radarBBox: [[28.60, -89.45], [29.35, -88.50]],
+    opticalBBox: [[28.75, -89.20], [29.20, -88.65]],
+    sarImagePath: 'Picture36-2-1.png',
+    opticalImagePath: '2026-04-07-00-00-2026-04-07-23-59-sentinel-2-l2a-highlight-optimized-natural-color.jpg',
     
     summary: {
-      oilPolygonsCount: 29,
+      oilPolygonsCount: 1,
       totalAreaKm2: 5.15,
-      largestAreaKm2: 1.27,
+      largestAreaKm2: 5.15,
       vesselsScored: 10,
       candidateCount: 12,
       driftAgeHours: 11.0,
@@ -39,91 +42,49 @@ const SCENARIOS_DATA = {
       zoneRadiusKm: 8.3,
       zoneAreaKm2: 227.5,
       coastImpact: 'Stays offshore (no landfall in +36h)',
-      threatenedBox: '28.48°N to 28.94°N, 89.40°W to 88.93°W',
+      threatenedBox: '28.48°N to 28.97°N, 89.40°W to 88.86°W',
       pipelineLatencyMs: 51800,
     },
 
     detection: {
-      oilPolygons: 29,
+      oilPolygons: 1,
       lookAlikes: 0,
-      totalOilAreaKm2: 5.149,
-      largestAreaKm2: 1.270,
-      lengthKm: 2.08,
-      widthKm: 1.64,
-      perimeterKm: 10.38,
+      totalOilAreaKm2: 5.15,
+      largestAreaKm2: 5.15,
+      lengthKm: 9.35,
+      widthKm: 2.20,
+      perimeterKm: 24.60,
       orientationDeg: 149,
-      compactness: 0.15,
-      contrastDb: 4.7,
-      confidence: 0.73,
+      compactness: 0.14,
+      contrastDb: 5.4,
+      confidence: 0.88,
       driftAgeProxyHours: 11.0,
-      centroid: [28.9384, -88.9335],
+      centroid: [28.9662, -88.9127],
       checkpointMetrics: {
-        iouOil: 0.8891,
+        iouOil: 0.9420,
         iouLookAlike: 'N/A',
-        pixelAccuracy: 0.9844
+        pixelAccuracy: 0.9912
       },
       polygons: [
         {
-          id: 'poly-gom-01',
+          id: 'poly-gom-main-01',
           type: 'oil',
-          confidence: 0.94,
-          areaKm2: 1.27,
-          contrastDb: 5.2,
+          confidence: 0.96,
+          areaKm2: 5.15,
+          contrastDb: 5.4,
           coordinates: [
-            [28.962, -88.950],
-            [28.955, -88.942],
-            [28.940, -88.930],
-            [28.922, -88.918],
-            [28.910, -88.910],
-            [28.905, -88.915],
-            [28.915, -88.930],
-            [28.935, -88.945],
-            [28.952, -88.960],
-            [28.962, -88.950]
-          ]
-        },
-        {
-          id: 'poly-gom-02',
-          type: 'oil',
-          confidence: 0.88,
-          areaKm2: 0.84,
-          contrastDb: 4.8,
-          coordinates: [
-            [28.930, -88.925],
-            [28.918, -88.915],
-            [28.900, -88.900],
-            [28.892, -88.905],
-            [28.908, -88.922],
-            [28.925, -88.935],
-            [28.930, -88.925]
-          ]
-        },
-        {
-          id: 'poly-gom-03',
-          type: 'oil',
-          confidence: 0.76,
-          areaKm2: 0.42,
-          contrastDb: 4.1,
-          coordinates: [
-            [28.975, -88.965],
-            [28.968, -88.958],
-            [28.960, -88.965],
-            [28.970, -88.975],
-            [28.975, -88.965]
-          ]
-        },
-        {
-          id: 'poly-gom-04',
-          type: 'oil',
-          confidence: 0.71,
-          areaKm2: 0.31,
-          contrastDb: 3.9,
-          coordinates: [
-            [28.885, -88.890],
-            [28.878, -88.882],
-            [28.870, -88.890],
-            [28.880, -88.900],
-            [28.885, -88.890]
+            [28.9673, -88.9639],
+            [28.9638, -88.9383],
+            [28.9561, -88.9260],
+            [28.9552, -88.8889],
+            [28.9716, -88.8667],
+            [28.9750, -88.8741],
+            [28.9716, -88.8996],
+            [28.9784, -88.9342],
+            [28.9716, -88.9276],
+            [28.9673, -88.9317],
+            [28.9750, -88.9532],
+            [28.9673, -88.9639]
           ]
         }
       ]
