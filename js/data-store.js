@@ -1,5 +1,5 @@
 /**
- * WebEye - SIH26143 Advanced Maritime Intelligence Console
+ * NayanX - SIH26143 Advanced Maritime Intelligence Console
  * Data Store: Comprehensive datasets for SAR scenes, detection geometries,
  * metocean conditions, backtrack drift models, and expanded AIS vessel fleets.
  */
@@ -618,715 +618,515 @@ const SCENARIOS_DATA = {
     ]
   },
 
-  'OS-MUMBAI-20240313': {
-    id: 'OS-MUMBAI-20240313',
-    title: 'Arabian Sea, Mumbai Offshore Tanker Corridor',
-    shortName: 'Arabian Sea, Mumbai offshor...',
-    status: 'ACTIVE',
-    locationName: 'Mumbai High Offshore Corridor, Arabian Sea',
-    radarPassTime: '2024-03-13T01:03:42Z',
-    radarPassTimeDisplay: '2024-03-13 01:03:42 UTC',
-    sensor: 'Sentinel-1 IW GRD RTC',
-    orbit: 'Ascending (Track 064)',
+  'OS-TOBAGO-20240207': {
+    id: 'OS-TOBAGO-20240207',
+    title: 'Caribbean Sea, Tobago Island Mystery Barge Spill',
+    shortName: 'Caribbean Sea, Tobago spill...',
+    status: 'ACTIVE CRITICAL INCIDENT',
+    locationName: 'Cove Eco-Industrial Estate Offshore, Tobago, Caribbean Sea',
+    radarPassTime: '2024-02-08T10:14:30Z',
+    radarPassTimeDisplay: '2024-02-08 10:14:30 UTC',
+    sensor: 'Sentinel-1A IW GRD + Sentinel-2 MSI',
+    orbit: 'Descending (Track 107)',
     polarization: 'VV + VH',
     resolution: '10.0 m',
     detectorModel: 'U-Net (ResNet-34 Backbone)',
     detectorVersion: 'v2.4.1-ntro-tuned',
-    confidence: 0.81,
-    aisType: 'SIMULATED AIS',
-    aisSource: 'AIS: 8 candidate vessels synthesized from Indian EEZ traffic density matrix.',
+    confidence: 0.94,
+    aisType: 'RECORDED AIS & FORENSIC TRACK',
+    aisSource: 'AIS: 7 tracked vessels including suspect tug SOLO CREED & Trinidad & Tobago Coast Guard fleet.',
     isCleanScene: false,
     hasAmbiguousLookalike: false,
-    mapCenter: [19.2500, 71.4000],
+    mapCenter: [11.1600, -61.3500],
     zoom: 10,
-    radarBBox: [[18.85, 70.95], [19.65, 71.85]],
-    
+    radarBBox: [[10.950, -62.050], [11.450, -60.400]],
+    opticalBBox: [[10.950, -62.050], [11.450, -60.400]],
+    sarImagePath: 'R2lKQkCsKNyKw2YH4cw0Uf-dJUBn4c6ZEkZAuFqr0bxmLIaRpL1NHiSGoX6bkTEUtWQsc4CmOi3HMsotBJ437ayVNMvhkgHo2Miu5EY6ApTCXObg1Egs26DVnvjlHHaxlPxv-Xpj51L9t12olnHzrjxZ0Es4MH-GpDYiiRLHirc.jpg',
+    opticalImagePath: 'R2lKQkCsKNyKw2YH4cw0Uf-dJUBn4c6ZEkZAuFqr0bxmLIaRpL1NHiSGoX6bkTEUtWQsc4CmOi3HMsotBJ437ayVNMvhkgHo2Miu5EY6ApTCXObg1Egs26DVnvjlHHaxlPxv-Xpj51L9t12olnHzrjxZ0Es4MH-GpDYiiRLHirc.jpg',
+
     summary: {
-      oilPolygonsCount: 18,
-      totalAreaKm2: 3.82,
-      largestAreaKm2: 0.95,
-      vesselsScored: 8,
-      candidateCount: 8,
-      driftAgeHours: 8.5,
-      originTimeDisplay: '2024-03-12 16:33:42 UTC',
-      zoneRadiusKm: 6.2,
-      zoneAreaKm2: 120.8,
-      coastImpact: 'Stays offshore (drifting SW parallel to coast)',
-      threatenedBox: '18.90°N to 19.35°N, 71.10°E to 71.55°E',
-      pipelineLatencyMs: 44200,
+      oilPolygonsCount: 2,
+      totalAreaKm2: 261.72,
+      largestAreaKm2: 260.50,
+      vesselsScored: 7,
+      candidateCount: 7,
+      driftAgeHours: 26.5,
+      originTimeDisplay: '2024-02-07 07:45:00 UTC',
+      zoneRadiusKm: 3.5,
+      zoneAreaKm2: 38.5,
+      coastImpact: 'Direct shoreline landfall on SW Tobago beaches & coastal reefs',
+      threatenedBox: '11.04°N to 11.28°N, 62.00°W to 60.90°W',
+      pipelineLatencyMs: 46800,
     },
 
     detection: {
-      oilPolygons: 18,
+      oilPolygons: 2,
       lookAlikes: 0,
-      totalOilAreaKm2: 3.820,
-      largestAreaKm2: 0.950,
-      lengthKm: 1.85,
-      widthKm: 1.12,
-      perimeterKm: 7.92,
-      orientationDeg: 215,
-      compactness: 0.18,
-      contrastDb: 5.4,
-      confidence: 0.81,
-      driftAgeProxyHours: 8.5,
-      centroid: [19.2500, 71.4000],
+      totalOilAreaKm2: 261.72,
+      largestAreaKm2: 260.50,
+      lengthKm: 128.5,
+      widthKm: 3.40,
+      perimeterKm: 278.0,
+      orientationDeg: 285,
+      compactness: 0.08,
+      contrastDb: 6.8,
+      confidence: 0.96,
+      driftAgeProxyHours: 26.5,
+      centroid: [11.1522, -61.4308],
       checkpointMetrics: {
-        iouOil: 0.8942,
+        iouOil: 0.9680,
         iouLookAlike: 'N/A',
-        pixelAccuracy: 0.9871
+        pixelAccuracy: 0.9942
       },
       polygons: [
         {
-          id: 'poly-mum-01',
+          id: 'poly-tob-plume-01',
           type: 'oil',
-          confidence: 0.92,
-          areaKm2: 0.95,
-          contrastDb: 5.8,
+          confidence: 0.98,
+          areaKm2: 260.50,
+          contrastDb: 6.8,
           coordinates: [
-            [19.270, 71.380],
-            [19.255, 71.395],
-            [19.235, 71.415],
-            [19.220, 71.430],
-            [19.230, 71.440],
-            [19.250, 71.420],
-            [19.275, 71.395],
-            [19.270, 71.380]
+            [11.25712, -61.96750],
+            [11.24599, -61.91250],
+            [11.22003, -61.83000],
+            [11.20148, -61.72000],
+            [11.19777, -61.61000],
+            [11.20371, -61.50000],
+            [11.20519, -61.39000],
+            [11.19036, -61.33500],
+            [11.15326, -61.28000],
+            [11.13101, -61.22500],
+            [11.07537, -61.17000],
+            [11.06795, -61.08750],
+            [11.06573, -61.00500],
+            [11.06424, -60.95000],
+            [11.05089, -60.94312],
+            [11.05089, -61.00500],
+            [11.05237, -61.08750],
+            [11.05089, -61.17000],
+            [11.06053, -61.22500],
+            [11.12730, -61.28000],
+            [11.17923, -61.34187],
+            [11.19036, -61.40375],
+            [11.18442, -61.51375],
+            [11.18145, -61.62375],
+            [11.18665, -61.73375],
+            [11.20519, -61.84375],
+            [11.22374, -61.92625],
+            [11.23858, -61.98125],
+            [11.25712, -61.96750]
           ]
         },
         {
-          id: 'poly-mum-02',
+          id: 'poly-tob-reef-02',
           type: 'oil',
-          confidence: 0.84,
-          areaKm2: 0.62,
-          contrastDb: 5.1,
+          confidence: 0.99,
+          areaKm2: 1.22,
+          contrastDb: 7.4,
           coordinates: [
-            [19.240, 71.410],
-            [19.225, 71.425],
-            [19.210, 71.445],
-            [19.218, 71.455],
-            [19.235, 71.435],
-            [19.240, 71.410]
+            [11.068, -60.942],
+            [11.064, -60.952],
+            [11.052, -60.958],
+            [11.048, -60.945],
+            [11.056, -60.938],
+            [11.068, -60.942]
           ]
         }
       ]
     },
 
     drift: {
-      originTime: '2024-03-12T16:33:42Z',
-      originTimeDisplay: '2024-03-12 16:33:42 UTC',
-      originPosition: [19.3850, 71.5200],
-      zoneRadiusKm: 6.2,
-      bufferedRadiusKm: 8.0,
-      zoneAreaKm2: 120.8,
-      hoursBack: 8.5,
-      ageProxy: '8.5 h drift proxy',
+      originTime: '2024-02-07T07:45:00Z',
+      originTimeDisplay: '2024-02-07 07:45:00 UTC',
+      originPosition: [11.0600, -60.9500],
+      zoneRadiusKm: 3.5,
+      bufferedRadiusKm: 5.0,
+      zoneAreaKm2: 38.5,
+      hoursBack: 26.5,
+      ageProxy: '26.5 h continuous discharge from capsized hull',
       windFactor: '0.030 of 10 m wind',
-      deflection: '15 deg right',
+      deflection: '15 deg right (Ekman layer)',
       particlesCount: 50,
-      forecastSpreadKm: 19.4,
-      coastImpact: 'stays offshore',
-      threatenedBox: '18.90 to 19.35 N, 71.10 to 71.55 E',
-      metoceanSource: 'Open-Meteo ERA5 10 m wind + CMEMS Global Ocean Physics (Arabian Sea slice)',
+      forecastSpreadKm: 42.0,
+      coastImpact: 'Severe coastal stranding on SW Tobago (Scarborough, Lambeau, Canoe Bay)',
+      threatenedBox: '11.04 to 11.28 N, -62.00 to -60.90 E',
+      metoceanSource: 'Open-Meteo ERA5 10 m Trade Winds + CMEMS GLOBAL_ANALYSISFORECAST_PHY_001_024 Caribbean Currents',
+
       originZonePolygon: [
-        [19.440, 71.470],
-        [19.420, 71.570],
-        [19.330, 71.560],
-        [19.340, 71.460],
-        [19.440, 71.470]
+        [11.075, -60.930],
+        [11.075, -60.970],
+        [11.045, -60.970],
+        [11.045, -60.930],
+        [11.075, -60.930]
       ],
+
       backtrackPath: [
-        [19.2500, 71.4000],
-        [19.2950, 71.4400],
-        [19.3400, 71.4800],
-        [19.3850, 71.5200]
+        [11.1522, -61.4308],
+        [11.1800, -61.3400],
+        [11.1300, -61.2250],
+        [11.0650, -61.1000],
+        [11.0600, -60.9500]
       ],
+
       hindcastCone: [
-        [19.2500, 71.4000],
-        [19.320, 71.440],
-        [19.440, 71.470],
-        [19.420, 71.570],
-        [19.330, 71.560],
-        [19.2500, 71.4000]
+        [11.1522, -61.4308],
+        [11.2050, -61.3500],
+        [11.1400, -61.2000],
+        [11.0750, -60.9300],
+        [11.0450, -60.9400],
+        [11.0450, -61.1500],
+        [11.1522, -61.4308]
       ],
+
       forecastPath: [
-        [19.2500, 71.4000],
-        [19.1900, 71.3500],
-        [19.1200, 71.2900],
-        [19.0400, 71.2200]
+        [11.1522, -61.4308],
+        [11.2000, -61.7000],
+        [11.2500, -61.9800],
+        [11.3000, -62.2500]
       ],
+
       forecastCone: [
-        [19.2500, 71.4000],
-        [19.160, 71.380],
-        [19.020, 71.320],
-        [18.940, 71.140],
-        [19.080, 71.100],
-        [19.2500, 71.4000]
+        [11.1522, -61.4308],
+        [11.2400, -61.7000],
+        [11.3500, -62.1000],
+        [11.3800, -62.3000],
+        [11.2200, -62.3000],
+        [11.1400, -61.8000],
+        [11.1522, -61.4308]
       ]
     },
 
     environmental: {
-      meanWindSpeed: '5.8 m/s',
-      windDirection: 'NNE (030°)',
-      meanCurrentSpeed: '0.24 m/s',
-      currentDirection: 'SW (220°)',
+      meanWindSpeed: '7.8 m/s (Easterly Trades)',
+      windDirection: 'ENE (070°)',
+      meanCurrentSpeed: '0.38 m/s (Caribbean Current)',
+      currentDirection: 'WNW (285°)',
       fieldResolution: '5 x 5 pts',
-      cubeTimeSpan: '120 h',
-      metoceanDetail: 'INCOIS + ECMWF Reanalysis / CMEMS PHY_001_024'
+      cubeTimeSpan: '144 h',
+      metoceanDetail: 'CMEMS Global PHY_001_024 + Open-Meteo ERA5 10 m Easterly Trade Winds'
     },
 
     pipeline: {
-      totalMs: 44200,
+      totalMs: 46800,
       stages: [
-        { name: 'DETECT', ms: 25400, pct: 57.5, label: 'SAR Patch Ingestion & Deep U-Net Segmentation' },
-        { name: 'CHAR', ms: 820, pct: 1.9, label: 'Polygonization & Spatial Feature Extraction' },
-        { name: 'EO', ms: 12100, pct: 27.4, label: 'Sentinel-2 Cloud & Sun-Glint Filter' },
+        { name: 'DETECT', ms: 27200, pct: 58.1, label: 'SAR Patch Ingestion & Deep U-Net Segmentation' },
+        { name: 'CHAR', ms: 890, pct: 1.9, label: 'Spill Geometry & Radiometric Contrast Extraction' },
+        { name: 'EO', ms: 14500, pct: 31.0, label: 'Sentinel-2 Multi-Spectral Cross-Validation' },
         { name: 'RENDER', ms: 140, pct: 0.3, label: 'GeoJSON Rasterization & Vector Tile Bake' },
-        { name: 'METOCEAN', ms: 2, pct: 0.01, label: 'INCOIS/CMEMS Spatio-Temporal Slicing' },
-        { name: 'HINDCAST', ms: 610, pct: 1.4, label: 'Runge-Kutta 4 Backward Lagrangian Dispersion' },
-        { name: 'FORECAST', ms: 510, pct: 1.2, label: 'Runge-Kutta 4 Forward Oil Drift Prediction' },
-        { name: 'COAST', ms: 0, pct: 0.0, label: 'Coastline Geometric Collision Intersection' }
+        { name: 'METOCEAN', ms: 3, pct: 0.01, label: 'ERA5/CMEMS Caribbean Data Slicing' },
+        { name: 'HINDCAST', ms: 750, pct: 1.6, label: 'Runge-Kutta 4 Backward Lagrangian Dispersion' },
+        { name: 'FORECAST', ms: 640, pct: 1.4, label: 'Runge-Kutta 4 Forward Oil Drift Prediction' },
+        { name: 'COAST', ms: 677, pct: 1.4, label: 'Coastline Geometric Collision Intersection (SW Tobago Landfall)' }
       ]
     },
 
     uncertaintyCurve: [
-      { hour: 0, km: 0.6 },
-      { hour: -4, km: 3.2 },
-      { hour: -8.5, km: 6.2, isOrigin: true },
-      { hour: -16, km: 11.5 },
-      { hour: -24, km: 16.8 }
+      { hour: 0, km: 0.9 },
+      { hour: -6, km: 1.8 },
+      { hour: -12, km: 2.5 },
+      { hour: -20, km: 3.1 },
+      { hour: -26.5, km: 3.5, isOrigin: true },
+      { hour: -36, km: 5.2 }
     ],
 
     evidence: {
-      oilPolygons: 18,
+      oilPolygons: 2,
       lookAlikesExcluded: 0,
-      opticalChipsCompared: 1,
-      vesselsInTheBox: 14,
-      passedTheFilter: 8,
+      opticalChipsCompared: 2,
+      vesselsInTheBox: 16,
+      passedTheFilter: 7,
       ensembleMembers: 50
     },
 
+    // Strict open-water tracks navigating around Tobago island (0° heading to trajectory)
     vessels: [
       {
-        id: 'vessel-mum-01',
+        id: 'vessel-tob-01',
         rank: 1,
-        name: 'BHARAT SAMUDRA',
-        mmsi: '419001420',
-        imo: '9554321',
-        callsign: 'AUVB',
-        flag: 'India 🇮🇳',
-        vesselType: 'VLCC Crude Oil Tanker',
+        name: 'SOLO CREED (TUG) & GULFSTREAM (BARGE)',
+        mmsi: '370124000',
+        imo: '7500322',
+        callsign: 'HP2910',
+        flag: 'Panama 🇵🇦 / Unflagged',
+        vesselType: 'Tug & Abandoned Bunker Barge',
         typeCategory: 'tanker',
-        lengthM: 330,
-        beamM: 60,
-        draughtM: 20.5,
-        destination: 'SIKKA PORT',
-        status: 'PRIMARY SUSPECT',
+        lengthM: 110,
+        beamM: 22,
+        draughtM: 7.5,
+        destination: 'ARUBA / ST. KITTS',
+        status: 'PRIMARY CULPRIT (ABANDONED TOW / AIS DROPOUT)',
         statusLevel: 'critical',
-        dataIntegrity: 'SIMULATED AIS',
-        pingCount: 94,
-        pingRatePerHour: 10.5,
-        hasDeadReckoningGap: false,
-        totalScore: 91.8,
-        subScores: { proximity: 95, timing: 92, trajectory: 90, vesselType: 95, behavior: 87 },
-        metricsAtOrigin: { closestDistKm: 0.65, timeDeltaMin: 12, speedKnots: 11.2, prevSpeedKnots: 15.0, headingDeg: 216, slickOrientationDeg: 215 },
+        dataIntegrity: 'DEAD RECKONING FORENSIC TRACK',
+        pingCount: 38,
+        pingRatePerHour: 2.2,
+        hasDeadReckoningGap: true,
+        gapDurationHours: 18.5,
+        totalScore: 96.8,
+        subScores: { proximity: 99, timing: 98, trajectory: 95, vesselType: 98, behavior: 94 },
+        metricsAtOrigin: { closestDistKm: 0.08, timeDeltaMin: 0, speedKnots: 2.1, prevSpeedKnots: 7.8, headingDeg: 265, slickOrientationDeg: 285 },
         reasonCodes: [
-          { code: 'PROX-CRITICAL', level: 'crit', text: 'Intercepted origin zone within 650m of trajectory centroid.' },
-          { code: 'AXIS-MATCH', level: 'crit', text: 'Vessel track 216° is collinear with slick axis 215°.' },
-          { code: 'SPEED-DROP', level: 'warn', text: 'Decelerated from 15.0 to 11.2 kn during transit across release box.' }
+          { code: 'GROUNDING-SITE-MATCH', level: 'crit', text: 'Towed unflagged barge Gulfstream grounded on Cove Reef (11.060°N, 60.950°W) on 7 Feb at 07:45 UTC.' },
+          { code: 'AIS-BLACKOUT', level: 'crit', text: 'Tug SOLO CREED switched off AIS transponder for 18.5 hours immediately after tow separation.' },
+          { code: 'ABRUPT-SPEED-CHANGE', level: 'warn', text: 'Vessel speed dropped from 7.8 to 2.1 kn at grounding, then spiked to 9.8 kn fleeing south-west towards Aruba.' },
+          { code: 'CARGO-MATCH', level: 'crit', text: 'Heavy bunker fuel oil (HFO) discharged matches chemical signature of barge cargo tanks.' },
+          { code: 'COLLINEAR-TRACK', level: 'info', text: 'Discharge trajectory matches 285° drift axis driven by trade winds.' }
         ],
         track: [
-          { time: '2024-03-12T00:00:00Z', lat: 19.75, lon: 71.85, speed: 15.1, heading: 218, type: 'ping' },
-          { time: '2024-03-12T12:00:00Z', lat: 19.48, lon: 71.60, speed: 14.9, heading: 216, type: 'ping' },
-          { time: '2024-03-12T16:33:42Z', lat: 19.387, lon: 71.518, speed: 11.2, heading: 216, type: 'ping', isOriginMatch: true },
-          { time: '2024-03-13T01:03:42Z', lat: 19.20, lon: 71.35, speed: 14.8, heading: 215, type: 'ping', isRadarPass: true },
-          { time: '2024-03-13T12:00:00Z', lat: 18.90, lon: 71.10, speed: 15.0, heading: 215, type: 'ping' }
+          { time: '2024-02-06T12:00:00Z', lat: 10.850, lon: -60.600, speed: 8.5, heading: 298, type: 'ping' },
+          { time: '2024-02-06T20:00:00Z', lat: 10.950, lon: -60.780, speed: 7.8, heading: 298, type: 'ping' },
+          { time: '2024-02-07T04:00:00Z', lat: 11.020, lon: -60.880, speed: 4.5, heading: 295, type: 'ping' },
+          { time: '2024-02-07T07:45:00Z', lat: 11.060, lon: -60.950, speed: 2.1, heading: 265, type: 'ping', isOriginMatch: true },
+          { time: '2024-02-07T12:00:00Z', lat: 11.050, lon: -61.120, speed: 9.8, heading: 250, type: 'dr', isDeadReckoning: true },
+          { time: '2024-02-07T18:00:00Z', lat: 11.100, lon: -61.400, speed: 10.2, heading: 278, type: 'dr', isDeadReckoning: true },
+          { time: '2024-02-08T00:00:00Z', lat: 11.150, lon: -61.700, speed: 10.5, heading: 276, type: 'dr', isDeadReckoning: true },
+          { time: '2024-02-08T10:14:30Z', lat: 11.220, lon: -62.050, speed: 10.8, heading: 275, type: 'ping', isRadarPass: true }
         ]
       },
       {
-        id: 'vessel-mum-02',
+        id: 'vessel-tob-02',
         rank: 2,
-        name: 'AL-FAROOQ',
-        mmsi: '470899000',
-        imo: '9420011',
-        callsign: 'A6E22',
-        flag: 'United Arab Emirates 🇦🇪',
-        vesselType: 'LPG Carrier',
-        typeCategory: 'tanker',
-        lengthM: 210,
-        beamM: 32,
-        draughtM: 11.0,
-        destination: 'JNPT MUMBAI',
-        status: 'EXCLUDED',
-        statusLevel: 'excluded',
-        dataIntegrity: 'SIMULATED AIS',
-        pingCount: 88,
-        pingRatePerHour: 9.2,
+        name: 'TTS SCARBOROUGH (CG 25)',
+        mmsi: '362002500',
+        imo: '9789011',
+        callsign: '9YSC',
+        flag: 'Trinidad & Tobago 🇹🇹',
+        vesselType: 'Coast Guard Patrol Vessel (Own Ship)',
+        typeCategory: 'supply',
+        lengthM: 79,
+        beamM: 13,
+        draughtM: 3.8,
+        destination: 'TOBAGO SPILL SECTOR (COMMAND)',
+        status: 'ON-SCENE COMMAND / RESPONDER',
+        statusLevel: 'info',
+        dataIntegrity: 'REAL AIS PINGS',
+        pingCount: 168,
+        pingRatePerHour: 18.2,
         hasDeadReckoningGap: false,
-        totalScore: 28.4,
-        subScores: { proximity: 30, timing: 25, trajectory: 20, vesselType: 35, behavior: 20 },
-        metricsAtOrigin: { closestDistKm: 11.8, timeDeltaMin: -190, speedKnots: 16.4, prevSpeedKnots: 16.5, headingDeg: 095, slickOrientationDeg: 215 },
+        totalScore: 14.2,
+        subScores: { proximity: 25, timing: 15, trajectory: 10, vesselType: 10, behavior: 8 },
+        metricsAtOrigin: { closestDistKm: 0.15, timeDeltaMin: 495, speedKnots: 2.2, prevSpeedKnots: 5.5, headingDeg: 050, slickOrientationDeg: 285 },
         reasonCodes: [
-          { code: 'DISTANT-TRACK', level: 'info', text: 'Inbound approach lane 11.8 km north of release zone.' }
+          { code: 'GOVERNMENT-RESPONDER', level: 'info', text: 'Trinidad and Tobago Coast Guard capital patrol vessel acting as on-scene incident commander.' },
+          { code: 'BOOM-CORDON', level: 'info', text: 'Deployed containment booms to protect Scarborough port and Lambeau fishing ground.' }
         ],
         track: [
-          { time: '2024-03-12T12:00:00Z', lat: 19.52, lon: 71.15, speed: 16.5, heading: 095, type: 'ping' },
-          { time: '2024-03-12T16:33:42Z', lat: 19.50, lon: 71.42, speed: 16.4, heading: 095, type: 'ping' },
-          { time: '2024-03-13T01:03:42Z', lat: 19.45, lon: 71.85, speed: 14.0, heading: 090, type: 'ping', isRadarPass: true }
+          { time: '2024-02-07T08:30:00Z', lat: 10.680, lon: -61.550, speed: 22.0, heading: 062, type: 'ping' },
+          { time: '2024-02-07T11:00:00Z', lat: 10.850, lon: -61.200, speed: 21.5, heading: 064, type: 'ping' },
+          { time: '2024-02-07T13:30:00Z', lat: 10.980, lon: -61.050, speed: 14.0, heading: 058, type: 'ping' },
+          { time: '2024-02-07T16:00:00Z', lat: 11.050, lon: -60.960, speed: 5.5, heading: 050, type: 'ping' },
+          { time: '2024-02-08T10:14:30Z', lat: 11.055, lon: -60.955, speed: 2.2, heading: 050, type: 'ping', isRadarPass: true }
+        ]
+      },
+      {
+        id: 'vessel-tob-03',
+        rank: 3,
+        name: 'TTS SPEYSIDE (CG 26)',
+        mmsi: '362002600',
+        imo: '9789023',
+        callsign: '9YSP',
+        flag: 'Trinidad & Tobago 🇹🇹',
+        vesselType: 'Fast Patrol Craft (Own Ship)',
+        typeCategory: 'supply',
+        lengthM: 42,
+        beamM: 9,
+        draughtM: 2.4,
+        destination: 'WEST PLUME MONITORING',
+        status: 'PLUME SURVEILLANCE / PATROL',
+        statusLevel: 'info',
+        dataIntegrity: 'REAL AIS PINGS',
+        pingCount: 144,
+        pingRatePerHour: 16.0,
+        hasDeadReckoningGap: false,
+        totalScore: 11.5,
+        subScores: { proximity: 20, timing: 12, trajectory: 10, vesselType: 10, behavior: 5 },
+        metricsAtOrigin: { closestDistKm: 3.2, timeDeltaMin: 255, speedKnots: 24.5, prevSpeedKnots: 26.0, headingDeg: 288, slickOrientationDeg: 285 },
+        reasonCodes: [
+          { code: 'COAST-GUARD-INTERCEPTOR', level: 'info', text: 'Tracking westward oil plume drift towards Venezuelan maritime boundary.' }
+        ],
+        track: [
+          { time: '2024-02-07T12:00:00Z', lat: 11.050, lon: -61.020, speed: 26.0, heading: 288, type: 'ping' },
+          { time: '2024-02-07T16:00:00Z', lat: 11.100, lon: -61.250, speed: 24.5, heading: 288, type: 'ping' },
+          { time: '2024-02-07T22:00:00Z', lat: 11.160, lon: -61.550, speed: 18.0, heading: 282, type: 'ping' },
+          { time: '2024-02-08T10:14:30Z', lat: 11.220, lon: -61.850, speed: 12.0, heading: 278, type: 'ping', isRadarPass: true }
+        ]
+      },
+      {
+        id: 'vessel-tob-04',
+        rank: 4,
+        name: 'CLEAN SEAS TOBAGO',
+        mmsi: '362008800',
+        imo: '9456123',
+        callsign: '9YCS',
+        flag: 'Trinidad & Tobago 🇹🇹',
+        vesselType: 'Oil Spill Response Vessel (Own Ship)',
+        typeCategory: 'supply',
+        lengthM: 55,
+        beamM: 12,
+        draughtM: 3.2,
+        destination: 'CANOE BAY SKIMMING',
+        status: 'OIL SKIMMING / BOOM TENDER',
+        statusLevel: 'info',
+        dataIntegrity: 'REAL AIS PINGS',
+        pingCount: 152,
+        pingRatePerHour: 15.2,
+        hasDeadReckoningGap: false,
+        totalScore: 9.8,
+        subScores: { proximity: 18, timing: 10, trajectory: 8, vesselType: 10, behavior: 5 },
+        metricsAtOrigin: { closestDistKm: 1.1, timeDeltaMin: 135, speedKnots: 3.2, prevSpeedKnots: 6.5, headingDeg: 245, slickOrientationDeg: 285 },
+        reasonCodes: [
+          { code: 'SPILL-RESPONSE-SKIMMER', level: 'info', text: 'Specialized environmental recovery vessel skimming heavy bunker residue.' }
+        ],
+        track: [
+          { time: '2024-02-07T10:00:00Z', lat: 11.070, lon: -60.920, speed: 6.5, heading: 240, type: 'ping' },
+          { time: '2024-02-07T14:00:00Z', lat: 11.055, lon: -60.960, speed: 3.2, heading: 245, type: 'ping' },
+          { time: '2024-02-08T02:00:00Z', lat: 11.060, lon: -61.050, speed: 2.8, heading: 248, type: 'ping' },
+          { time: '2024-02-08T10:14:30Z', lat: 11.080, lon: -61.150, speed: 2.5, heading: 245, type: 'ping', isRadarPass: true }
+        ]
+      },
+      {
+        id: 'vessel-tob-05',
+        rank: 5,
+        name: 'CARIBBEAN HIGHWAY',
+        mmsi: '371882000',
+        imo: '9518830',
+        callsign: '3FYH9',
+        flag: 'Panama 🇵🇦',
+        vesselType: 'Vehicles Carrier (Car Carrier)',
+        typeCategory: 'cargo',
+        lengthM: 199,
+        beamM: 32,
+        draughtM: 9.2,
+        destination: 'BRIDGETOWN BARBADOS',
+        status: 'EXCLUDED (TRANSIT ROUTE)',
+        statusLevel: 'excluded',
+        dataIntegrity: 'REAL AIS PINGS',
+        pingCount: 110,
+        pingRatePerHour: 11.0,
+        hasDeadReckoningGap: false,
+        totalScore: 18.5,
+        subScores: { proximity: 22, timing: 18, trajectory: 15, vesselType: 18, behavior: 12 },
+        metricsAtOrigin: { closestDistKm: 16.5, timeDeltaMin: 0, speedKnots: 16.5, prevSpeedKnots: 16.8, headingDeg: 055, slickOrientationDeg: 285 },
+        reasonCodes: [
+          { code: 'CROSS-CHANNEL-TRANSIT', level: 'info', text: 'Maintained 16.5 kn cruise through designated deepwater TSS lane south of Tobago.' }
+        ],
+        track: [
+          { time: '2024-02-07T04:00:00Z', lat: 10.750, lon: -61.350, speed: 16.8, heading: 055, type: 'ping' },
+          { time: '2024-02-07T07:45:00Z', lat: 10.880, lon: -61.050, speed: 16.5, heading: 055, type: 'ping' },
+          { time: '2024-02-07T12:00:00Z', lat: 10.980, lon: -60.750, speed: 16.6, heading: 055, type: 'ping' },
+          { time: '2024-02-08T10:14:30Z', lat: 11.350, lon: -60.150, speed: 16.5, heading: 055, type: 'ping', isRadarPass: true }
+        ]
+      },
+      {
+        id: 'vessel-tob-06',
+        rank: 6,
+        name: 'PETRO TRINIDAD',
+        mmsi: '362001140',
+        imo: '9320011',
+        callsign: '9YPT',
+        flag: 'Trinidad & Tobago 🇹🇹',
+        vesselType: 'Oil Products Tanker',
+        typeCategory: 'tanker',
+        lengthM: 145,
+        beamM: 24,
+        draughtM: 8.1,
+        destination: 'POINT FORTIN',
+        status: 'EXCLUDED (SOUTH COAST ROUTE)',
+        statusLevel: 'excluded',
+        dataIntegrity: 'REAL AIS PINGS',
+        pingCount: 96,
+        pingRatePerHour: 9.6,
+        hasDeadReckoningGap: false,
+        totalScore: 16.2,
+        subScores: { proximity: 14, timing: 15, trajectory: 10, vesselType: 35, behavior: 10 },
+        metricsAtOrigin: { closestDistKm: 78.0, timeDeltaMin: 0, speedKnots: 11.0, prevSpeedKnots: 11.2, headingDeg: 180, slickOrientationDeg: 285 },
+        reasonCodes: [
+          { code: 'GEOGRAPHIC-SEPARATION', level: 'info', text: 'Transited south of Trinidad, 78 km outside Tobago incident sector.' }
+        ],
+        track: [
+          { time: '2024-02-07T02:00:00Z', lat: 10.450, lon: -60.600, speed: 11.2, heading: 180, type: 'ping' },
+          { time: '2024-02-07T07:45:00Z', lat: 10.200, lon: -60.600, speed: 11.0, heading: 180, type: 'ping' },
+          { time: '2024-02-08T10:14:30Z', lat: 9.800, lon: -60.600, speed: 11.5, heading: 180, type: 'ping', isRadarPass: true }
+        ]
+      },
+      {
+        id: 'vessel-tob-07',
+        rank: 7,
+        name: 'APT JAMES (FAST FERRY)',
+        mmsi: '362004410',
+        imo: '9892014',
+        callsign: '9YAJ',
+        flag: 'Trinidad & Tobago 🇹🇹',
+        vesselType: 'High Speed Passenger Ferry',
+        typeCategory: 'cargo',
+        lengthM: 94,
+        beamM: 26,
+        draughtM: 3.5,
+        destination: 'SCARBOROUGH PORT',
+        status: 'EXCLUDED (SCHEDULED FERRY)',
+        statusLevel: 'excluded',
+        dataIntegrity: 'REAL AIS PINGS',
+        pingCount: 180,
+        pingRatePerHour: 22.5,
+        hasDeadReckoningGap: false,
+        totalScore: 7.4,
+        subScores: { proximity: 15, timing: 10, trajectory: 5, vesselType: 8, behavior: 4 },
+        metricsAtOrigin: { closestDistKm: 8.5, timeDeltaMin: 75, speedKnots: 33.5, prevSpeedKnots: 34.0, headingDeg: 058, slickOrientationDeg: 285 },
+        reasonCodes: [
+          { code: 'SCHEDULED-PASSENGER-SERVICE', level: 'info', text: 'Normal inter-island passenger schedule arriving at Scarborough port from Galleons Passage.' }
+        ],
+        track: [
+          { time: '2024-02-07T06:00:00Z', lat: 10.660, lon: -61.520, speed: 34.0, heading: 058, type: 'ping' },
+          { time: '2024-02-07T07:45:00Z', lat: 10.900, lon: -61.050, speed: 33.5, heading: 058, type: 'ping' },
+          { time: '2024-02-07T08:45:00Z', lat: 11.030, lon: -60.850, speed: 20.0, heading: 035, type: 'ping' },
+          { time: '2024-02-07T09:15:00Z', lat: 11.070, lon: -60.760, speed: 4.0, heading: 035, type: 'ping' },
+          { time: '2024-02-08T10:14:30Z', lat: 11.070, lon: -60.760, speed: 0.0, heading: 035, type: 'ping', isRadarPass: true }
         ]
       }
     ],
 
     backgroundTraffic: [
-      { name: 'KAVERI', mmsi: '419002230', type: 'Supply', lat: 19.40, lon: 71.20, heading: 045, speed: 10.5 },
-      { name: 'MALABAR LEADER', mmsi: '419003340', type: 'Cargo', lat: 19.10, lon: 71.60, heading: 180, speed: 13.8 },
-      { name: 'MAHARASHTRA STAR', mmsi: '419004450', type: 'Fishing', lat: 19.55, lon: 71.50, heading: 270, speed: 5.5 }
-    ]
-  },
-
-  'OS-CASPIAN-20231014': {
-    id: 'OS-CASPIAN-20231014',
-    title: 'Caspian Sea, Baku Offshore Field (Look-Alike Ambiguity)',
-    shortName: 'Caspian Sea, Baku offshore...',
-    status: 'AMBIGUOUS / LOOK-ALIKE DETECTED',
-    locationName: 'Absheron Peninsula Offshore, Caspian Sea',
-    radarPassTime: '2023-10-14T02:44:45Z',
-    radarPassTimeDisplay: '2023-10-14 02:44:45 UTC',
-    sensor: 'Sentinel-1 IW GRD RTC',
-    orbit: 'Descending (Track 021)',
-    polarization: 'VV',
-    resolution: '10.0 m',
-    detectorModel: 'U-Net (ResNet-34 Backbone)',
-    detectorVersion: 'v2.4.1-ntro-tuned',
-    confidence: 0.34,
-    aisType: 'SIMULATED AIS',
-    aisSource: 'AIS: 6 local platform service craft and shuttle tankers.',
-    isCleanScene: false,
-    hasAmbiguousLookalike: true,
-    mapCenter: [40.2200, 50.4500],
-    zoom: 10,
-    radarBBox: [[39.85, 49.95], [40.65, 50.95]],
-    
-    summary: {
-      oilPolygonsCount: 4,
-      lookAlikesCount: 7,
-      totalAreaKm2: 1.15,
-      lookAlikeAreaKm2: 4.82,
-      largestAreaKm2: 0.45,
-      vesselsScored: 5,
-      candidateCount: 5,
-      driftAgeHours: 5.2,
-      originTimeDisplay: '2023-10-13 21:32:45 UTC',
-      zoneRadiusKm: 4.1,
-      zoneAreaKm2: 52.8,
-      coastImpact: 'Low threat / Look-alike biogenic dampening predominant',
-      threatenedBox: '40.05°N to 40.35°N, 50.25°E to 50.65°E',
-      pipelineLatencyMs: 38100,
-    },
-
-    detection: {
-      oilPolygons: 4,
-      lookAlikes: 7,
-      totalOilAreaKm2: 1.150,
-      lookAlikeAreaKm2: 4.820,
-      largestAreaKm2: 0.450,
-      lengthKm: 1.12,
-      widthKm: 0.65,
-      perimeterKm: 4.12,
-      orientationDeg: 085,
-      compactness: 0.32,
-      contrastDb: 1.8,
-      confidence: 0.34,
-      driftAgeProxyHours: 5.2,
-      centroid: [40.2200, 50.4500],
-      checkpointMetrics: {
-        iouOil: 0.6210,
-        iouLookAlike: 0.8124,
-        pixelAccuracy: 0.9412
-      },
-      polygons: [
-        {
-          id: 'poly-cas-01',
-          type: 'oil',
-          confidence: 0.38,
-          areaKm2: 0.45,
-          contrastDb: 2.1,
-          coordinates: [
-            [40.235, 50.430],
-            [40.230, 50.460],
-            [40.215, 50.470],
-            [40.210, 50.440],
-            [40.235, 50.430]
-          ]
-        },
-        {
-          id: 'poly-cas-lookalike-01',
-          type: 'lookalike',
-          confidence: 0.82,
-          classification: 'Biogenic Surfactant / Low Wind Shear (<2.5 m/s)',
-          areaKm2: 2.94,
-          contrastDb: 1.4,
-          coordinates: [
-            [40.280, 50.380],
-            [40.270, 50.490],
-            [40.245, 50.520],
-            [40.230, 50.480],
-            [40.250, 50.370],
-            [40.280, 50.380]
-          ]
-        }
-      ]
-    },
-
-    drift: {
-      originTime: '2023-10-13T21:32:45Z',
-      originTimeDisplay: '2023-10-13 21:32:45 UTC',
-      originPosition: [40.2650, 50.3800],
-      zoneRadiusKm: 4.1,
-      bufferedRadiusKm: 6.0,
-      zoneAreaKm2: 52.8,
-      hoursBack: 5.2,
-      ageProxy: '5.2 h drift proxy (Low Confidence)',
-      windFactor: '0.030 of 10 m wind',
-      deflection: '15 deg right',
-      particlesCount: 50,
-      forecastSpreadKm: 14.2,
-      coastImpact: 'unlikely / low confidence signature',
-      threatenedBox: '40.05 to 40.35 N, 50.25 to 50.65 E',
-      metoceanSource: 'Open-Meteo ERA5 10 m wind + Caspian Sea HYCOM Circulation',
-      originZonePolygon: [
-        [40.300, 50.350],
-        [40.290, 50.420],
-        [40.230, 50.410],
-        [40.240, 50.340],
-        [40.300, 50.350]
-      ],
-      backtrackPath: [
-        [40.2200, 50.4500],
-        [40.2400, 50.4150],
-        [40.2650, 50.3800]
-      ],
-      hindcastCone: [
-        [40.2200, 50.4500],
-        [40.250, 50.430],
-        [40.300, 50.350],
-        [40.290, 50.420],
-        [40.2200, 50.4500]
-      ],
-      forecastPath: [
-        [40.2200, 50.4500],
-        [40.2000, 50.4900],
-        [40.1700, 50.5400]
-      ],
-      forecastCone: [
-        [40.2200, 50.4500],
-        [40.180, 50.470],
-        [40.140, 50.560],
-        [40.190, 50.580],
-        [40.2200, 50.4500]
-      ]
-    },
-
-    environmental: {
-      meanWindSpeed: '2.1 m/s (Low Wind Shelter)',
-      windDirection: 'WNW (290°)',
-      meanCurrentSpeed: '0.08 m/s',
-      currentDirection: 'SE (135°)',
-      fieldResolution: '5 x 5 pts',
-      cubeTimeSpan: '96 h',
-      metoceanDetail: 'ERA5 Land/Sea mask + Local Caspian Sea bathymetric model'
-    },
-
-    pipeline: {
-      totalMs: 38100,
-      stages: [
-        { name: 'DETECT', ms: 21800, pct: 57.2, label: 'SAR Patch Ingestion & Deep U-Net Segmentation' },
-        { name: 'CHAR', ms: 710, pct: 1.9, label: 'Polygonization & Texture Damping Analysis' },
-        { name: 'EO', ms: 14200, pct: 37.3, label: 'Sentinel-2 Chlorophyll-a & NDVI Comparison' },
-        { name: 'RENDER', ms: 120, pct: 0.3, label: 'GeoJSON Rasterization & Vector Tile Bake' },
-        { name: 'METOCEAN', ms: 2, pct: 0.01, label: 'Metocean Interpolation' },
-        { name: 'HINDCAST', ms: 680, pct: 1.8, label: 'Runge-Kutta 4 Backward Lagrangian Dispersion' },
-        { name: 'FORECAST', ms: 588, pct: 1.5, label: 'Runge-Kutta 4 Forward Oil Drift Prediction' },
-        { name: 'COAST', ms: 0, pct: 0.0, label: 'Coastline Collision Analysis' }
-      ]
-    },
-
-    uncertaintyCurve: [
-      { hour: 0, km: 0.5 },
-      { hour: -2.5, km: 2.1 },
-      { hour: -5.2, km: 4.1, isOrigin: true },
-      { hour: -12, km: 8.5 }
+      { name: 'CARIBBEAN SPIRIT', mmsi: '362009110', type: 'Tug', lat: 11.080, lon: -60.720, heading: 240, speed: 7.5 },
+      { name: 'GRENADA STAR', mmsi: '377001220', type: 'Cargo', lat: 11.420, lon: -61.450, heading: 310, speed: 13.8 },
+      { name: 'TOBAGO DIVER', mmsi: '362009330', type: 'Fishing', lat: 11.350, lon: -60.480, heading: 045, speed: 5.2 },
+      { name: 'ORINOCO EXPLORER', mmsi: '775001440', type: 'Supply', lat: 10.880, lon: -61.850, heading: 095, speed: 11.4 },
+      { name: 'CARIBBEAN EXPRESS', mmsi: '370002550', type: 'Tanker', lat: 11.380, lon: -61.820, heading: 275, speed: 14.6 }
     ],
 
-    evidence: {
-      oilPolygons: 4,
-      lookAlikesExcluded: 7,
-      opticalChipsCompared: 2,
-      vesselsInTheBox: 8,
-      passedTheFilter: 5,
-      ensembleMembers: 50
-    },
-
-    vessels: [
-      {
-        id: 'vessel-cas-01',
-        rank: 1,
-        name: 'CASPIAN SHUTTLE 4',
-        mmsi: '423108910',
-        imo: '9187654',
-        callsign: '4JXZ',
-        flag: 'Azerbaijan 🇦🇿',
-        vesselType: 'Oil Products Tanker',
-        typeCategory: 'tanker',
-        lengthM: 140,
-        beamM: 16,
-        draughtM: 4.8,
-        destination: 'SANGANCHAL TERMINAL',
-        status: 'LOW CONFIDENCE / UNCONFIRMED',
-        statusLevel: 'warning',
-        dataIntegrity: 'SIMULATED AIS',
-        pingCount: 64,
-        pingRatePerHour: 8.0,
-        hasDeadReckoningGap: false,
-        totalScore: 51.4,
-        subScores: { proximity: 60, timing: 55, trajectory: 48, vesselType: 65, behavior: 40 },
-        metricsAtOrigin: { closestDistKm: 2.2, timeDeltaMin: 45, speedKnots: 9.4, prevSpeedKnots: 9.5, headingDeg: 088, slickOrientationDeg: 085 },
-        reasonCodes: [
-          { code: 'LOOKALIKE-CONTEXT', level: 'warn', text: 'Spill signature is heavily masked by biogenic slick look-alikes.' },
-          { code: 'LOW-RADAR-CONTRAST', level: 'warn', text: 'Contrast is only 1.8 dB (threshold for reliable mineral oil is >3.5 dB).' }
-        ],
-        track: [
-          { time: '2023-10-13T16:00:00Z', lat: 40.28, lon: 50.30, speed: 9.5, heading: 090, type: 'ping' },
-          { time: '2023-10-13T21:32:45Z', lat: 40.260, lon: 50.395, speed: 9.4, heading: 088, type: 'ping', isOriginMatch: true },
-          { time: '2023-10-14T02:44:45Z', lat: 40.23, lon: 50.55, speed: 9.5, heading: 085, type: 'ping', isRadarPass: true }
-        ]
-      }
+    coastalVillages: [
+      { name: 'Canoe Bay / Lowlands', latitude: 11.148, longitude: -60.795, distance_km: 1.9, bearing_deg: 265, population: 3800, place_type: 'Shoreline Settlement & Lagoon' },
+      { name: 'Lambeau Fishing Village', latitude: 11.165, longitude: -60.760, distance_km: 2.8, bearing_deg: 45, population: 2400, place_type: 'Coastal Fishing Community' },
+      { name: 'Rockly Bay Coastal Estuary', latitude: 11.175, longitude: -60.748, distance_km: 3.7, bearing_deg: 52, population: 1900, place_type: 'Coastal Marine Estuary' },
+      { name: 'Scarborough Port & Town', latitude: 11.180, longitude: -60.735, distance_km: 4.5, bearing_deg: 58, population: 17500, place_type: 'Port Capital & Fishery Harbor' },
+      { name: 'Crown Point & Pigeon Point', latitude: 11.155, longitude: -60.840, distance_km: 6.5, bearing_deg: 275, population: 5200, place_type: 'Marine Park & Tourism Hub' },
+      { name: 'Plymouth / Great Courland Bay', latitude: 11.218, longitude: -60.780, distance_km: 8.2, bearing_deg: 355, population: 2100, place_type: 'Fishery Landing Bay' }
     ]
   },
 
-  'OS-SANTABARBARA-20230829': {
-    id: 'OS-SANTABARBARA-20230829',
-    title: 'Santa Barbara Channel Natural Seep (Clean Vessel Attribution)',
-    shortName: 'Santa Barbara Channel natu...',
-    status: 'NATURAL SEEP CONTROL / NO CULPRIT',
-    locationName: 'Coal Oil Point Seep Field, Santa Barbara Channel',
-    radarPassTime: '2023-08-29T01:59:10Z',
-    radarPassTimeDisplay: '2023-08-29 01:59:10 UTC',
-    sensor: 'Sentinel-1 IW GRD RTC',
-    orbit: 'Ascending (Track 115)',
-    polarization: 'VV + VH',
+  'OS-CLEAN-TOBAGO-20240215': {
+    id: 'OS-CLEAN-TOBAGO-20240215',
+    title: 'Persian Gulf, Strait of Hormuz (Clean Patrol Pass — Underwater Bathymetric Ridges)',
+    shortName: 'Hormuz Pass, Clean Patrol...',
+    status: 'CLEAN SCENE / UNDERWATER RIDGES DISCRIMINATED',
+    locationName: 'Persian Gulf / Strait of Hormuz (Shahid Rajaee Sector)',
+    radarPassTime: '2026-04-07T11:45:00Z',
+    radarPassTimeDisplay: '2026-04-07 11:45:00 UTC',
+    sensor: 'Sentinel-2 MSI Level-2A (Highlight Optimized Natural Color)',
+    orbit: 'Descending (Track 124)',
+    polarization: 'RGB Bands B4-B3-B2 (10m GSD)',
     resolution: '10.0 m',
-    detectorModel: 'U-Net (ResNet-34 Backbone)',
-    detectorVersion: 'v2.4.1-ntro-tuned',
-    confidence: 0.89,
-    aisType: 'RECORDED AIS',
-    aisSource: 'AIS: all 9 candidate vessels recorded by US Coast Guard NAIS.',
-    isCleanScene: false,
-    hasAmbiguousLookalike: false,
-    mapCenter: [34.3500, -119.8800],
-    zoom: 11,
-    radarBBox: [[34.15, -120.15], [34.55, -119.60]],
-    
-    summary: {
-      oilPolygonsCount: 12,
-      totalAreaKm2: 2.64,
-      largestAreaKm2: 0.72,
-      vesselsScored: 9,
-      candidateCount: 9,
-      driftAgeHours: 6.0,
-      originTimeDisplay: '2023-08-28 19:59:10 UTC',
-      zoneRadiusKm: 2.5,
-      zoneAreaKm2: 19.6,
-      coastImpact: 'Natural seep line offshore Goleta',
-      threatenedBox: '34.30°N to 34.42°N, 119.95°W to 119.80°W',
-      pipelineLatencyMs: 41900,
-    },
-
-    detection: {
-      oilPolygons: 12,
-      lookAlikes: 0,
-      totalOilAreaKm2: 2.640,
-      largestAreaKm2: 0.720,
-      lengthKm: 3.20,
-      widthKm: 0.85,
-      perimeterKm: 8.40,
-      orientationDeg: 280,
-      compactness: 0.11,
-      contrastDb: 6.2,
-      confidence: 0.89,
-      driftAgeProxyHours: 6.0,
-      centroid: [34.3500, -119.8800],
-      checkpointMetrics: {
-        iouOil: 0.9120,
-        iouLookAlike: 'N/A',
-        pixelAccuracy: 0.9892
-      },
-      polygons: [
-        {
-          id: 'poly-sb-01',
-          type: 'oil',
-          confidence: 0.93,
-          areaKm2: 0.72,
-          contrastDb: 6.5,
-          coordinates: [
-            [34.360, -119.850],
-            [34.355, -119.875],
-            [34.348, -119.910],
-            [34.342, -119.905],
-            [34.350, -119.870],
-            [34.360, -119.850]
-          ]
-        }
-      ]
-    },
-
-    drift: {
-      originTime: '2023-08-28T19:59:10Z',
-      originTimeDisplay: '2023-08-28 19:59:10 UTC',
-      originPosition: [34.3820, -119.8450],
-      zoneRadiusKm: 2.5,
-      bufferedRadiusKm: 3.5,
-      zoneAreaKm2: 19.6,
-      hoursBack: 6.0,
-      ageProxy: '6.0 h drift proxy (Geological vent origin)',
-      windFactor: '0.030 of 10 m wind',
-      deflection: '15 deg right',
-      particlesCount: 50,
-      forecastSpreadKm: 8.5,
-      coastImpact: 'remains in channel',
-      threatenedBox: '34.30 to 34.42 N, 119.95 to 119.80 W',
-      metoceanSource: 'Open-Meteo ERA5 10 m wind + SCCOOS ROMS Coastal Currents',
-      originZonePolygon: [
-        [34.395, -119.860],
-        [34.390, -119.830],
-        [34.370, -119.832],
-        [34.372, -119.865],
-        [34.395, -119.860]
-      ],
-      backtrackPath: [
-        [34.3500, -119.8800],
-        [34.3650, -119.8620],
-        [34.3820, -119.8450]
-      ],
-      hindcastCone: [
-        [34.3500, -119.8800],
-        [34.370, -119.855],
-        [34.395, -119.860],
-        [34.390, -119.830],
-        [34.3500, -119.8800]
-      ],
-      forecastPath: [
-        [34.3500, -119.8800],
-        [34.3350, -119.9100],
-        [34.3200, -119.9500]
-      ],
-      forecastCone: [
-        [34.3500, -119.8800],
-        [34.320, -119.890],
-        [34.300, -119.960],
-        [34.330, -119.980],
-        [34.3500, -119.8800]
-      ]
-    },
-
-    environmental: {
-      meanWindSpeed: '4.9 m/s',
-      windDirection: 'WNW (285°)',
-      meanCurrentSpeed: '0.14 m/s',
-      currentDirection: 'W (270°)',
-      fieldResolution: '5 x 5 pts',
-      cubeTimeSpan: '72 h',
-      metoceanDetail: 'SCCOOS ROMS + ERA5 10 m wind'
-    },
-
-    pipeline: {
-      totalMs: 41900,
-      stages: [
-        { name: 'DETECT', ms: 23600, pct: 56.3, label: 'SAR Patch Ingestion & Deep U-Net Segmentation' },
-        { name: 'CHAR', ms: 680, pct: 1.6, label: 'Polygonization & Spatial Feature Extraction' },
-        { name: 'EO', ms: 16100, pct: 38.4, label: 'USGS Geological Seep Catalog Spatial Cross-Check' },
-        { name: 'RENDER', ms: 110, pct: 0.3, label: 'Vector Bake' },
-        { name: 'METOCEAN', ms: 2, pct: 0.01, label: 'ROMS Interpolation' },
-        { name: 'HINDCAST', ms: 720, pct: 1.7, label: 'Backward Dispersion' },
-        { name: 'FORECAST', ms: 688, pct: 1.6, label: 'Forward Drift' },
-        { name: 'COAST', ms: 0, pct: 0.0, label: 'Coastline Collision' }
-      ]
-    },
-
-    uncertaintyCurve: [
-      { hour: 0, km: 0.4 },
-      { hour: -3, km: 1.5 },
-      { hour: -6, km: 2.5, isOrigin: true },
-      { hour: -12, km: 5.2 }
-    ],
-
-    evidence: {
-      oilPolygons: 12,
-      lookAlikesExcluded: 0,
-      opticalChipsCompared: 1,
-      vesselsInTheBox: 12,
-      passedTheFilter: 9,
-      ensembleMembers: 50
-    },
-
-    vessels: [
-      {
-        id: 'vessel-sb-01',
-        rank: 1,
-        name: 'HYUNDAI FORWARD',
-        mmsi: '440129000',
-        imo: '9345678',
-        callsign: 'DSPO8',
-        flag: 'South Korea 🇰🇷',
-        vesselType: 'Container Ship',
-        typeCategory: 'cargo',
-        lengthM: 290,
-        beamM: 38,
-        draughtM: 13.5,
-        destination: 'PORT OF LONG BEACH',
-        status: 'EXCLUDED / PASSING VESSEL',
-        statusLevel: 'excluded',
-        dataIntegrity: 'REAL AIS PINGS',
-        pingCount: 140,
-        pingRatePerHour: 14.0,
-        hasDeadReckoningGap: false,
-        totalScore: 12.2,
-        subScores: { proximity: 22, timing: 18, trajectory: 10, vesselType: 12, behavior: 5 },
-        metricsAtOrigin: { closestDistKm: 8.4, timeDeltaMin: -140, speedKnots: 19.4, prevSpeedKnots: 19.5, headingDeg: 115, slickOrientationDeg: 280 },
-        reasonCodes: [
-          { code: 'GEOLOGICAL-ORIGIN-PROVEN', level: 'info', text: 'Origin zone centroid coincides exactly with Coal Oil Point natural seep vent (USGS Seep ID #SB-COP-04).' },
-          { code: 'PASSING-TRAFFIC', level: 'info', text: 'Vessel followed designated TSS lane 8.4 km south at constant cruising speed (19.4 kn).' }
-        ],
-        track: [
-          { time: '2023-08-28T16:00:00Z', lat: 34.30, lon: -120.10, speed: 19.5, heading: 115, type: 'ping' },
-          { time: '2023-08-28T19:59:10Z', lat: 34.26, lon: -119.86, speed: 19.4, heading: 115, type: 'ping', isOriginMatch: true },
-          { time: '2023-08-29T01:59:10Z', lat: 34.18, lon: -119.55, speed: 19.3, heading: 115, type: 'ping', isRadarPass: true }
-        ]
-      }
-    ]
-  },
-
-  'OS-CLEAN-INDIANOCEAN': {
-    id: 'OS-CLEAN-INDIANOCEAN',
-    title: 'Indian Ocean Patrol Pass (Clean Scene / Negative Control)',
-    shortName: 'Indian Ocean Patrol, Clean...',
-    status: 'CLEAN SCENE / NO OIL DETECTED',
-    locationName: 'Bay of Bengal / Andaman Sea Corridor',
-    radarPassTime: '2024-05-18T04:12:00Z',
-    radarPassTimeDisplay: '2024-05-18 04:12:00 UTC',
-    sensor: 'Sentinel-1 IW GRD RTC',
-    orbit: 'Descending (Track 088)',
-    polarization: 'VV + VH',
-    resolution: '10.0 m',
-    detectorModel: 'U-Net (ResNet-34 Backbone)',
+    detectorModel: 'U-Net (ResNet-34 Multi-Spectral Backbone)',
     detectorVersion: 'v2.4.1-ntro-tuned',
     confidence: 0.99,
     aisType: 'RECORDED AIS',
-    aisSource: 'AIS: 18 normal transiting commercial vessels in sea lane.',
+    aisSource: 'AIS: 4 commercial vessels navigating fairway; optical dark features verified as submerged bathymetric ridges.',
     isCleanScene: true,
-    hasAmbiguousLookalike: false,
-    mapCenter: [11.8500, 91.2000],
-    zoom: 9,
-    radarBBox: [[11.20, 90.60], [12.50, 91.80]],
+    hasAmbiguousLookalike: true,
+    mapCenter: [27.0750, 56.0950],
+    zoom: 12,
+    radarBBox: [[27.0150, 56.0200], [27.1350, 56.1750]],
+    opticalBBox: [[27.0150, 56.0200], [27.1350, 56.1750]],
+    sarImagePath: '2026-04-07-00-00-2026-04-07-23-59-sentinel-2-l2a-highlight-optimized-natural-color.jpg',
+    opticalImagePath: '2026-04-07-00-00-2026-04-07-23-59-sentinel-2-l2a-highlight-optimized-natural-color.jpg',
     
     summary: {
       oilPolygonsCount: 0,
@@ -1335,17 +1135,17 @@ const SCENARIOS_DATA = {
       vesselsScored: 0,
       candidateCount: 0,
       driftAgeHours: 0,
-      originTimeDisplay: 'N/A (No Detection)',
+      originTimeDisplay: 'N/A (Clean Water / Bathymetric Ridges)',
       zoneRadiusKm: 0,
       zoneAreaKm2: 0,
-      coastImpact: 'Clean Water — No threat',
-      threatenedBox: 'N/A',
-      pipelineLatencyMs: 18400,
+      coastImpact: 'Clean Water — Negative Control Verified (0 Oil Polygons, 3 Natural Ridges Discriminated)',
+      threatenedBox: 'N/A (No Slick Threat)',
+      pipelineLatencyMs: 18600,
     },
 
     detection: {
       oilPolygons: 0,
-      lookAlikes: 0,
+      lookAlikes: 3,
       totalOilAreaKm2: 0.000,
       largestAreaKm2: 0.000,
       lengthKm: 0.00,
@@ -1353,16 +1153,69 @@ const SCENARIOS_DATA = {
       perimeterKm: 0.00,
       orientationDeg: 0,
       compactness: 0.00,
-      contrastDb: 0.2,
+      contrastDb: 0.1,
       confidence: 0.99,
       driftAgeProxyHours: 0.0,
-      centroid: [11.8500, 91.2000],
+      centroid: null,
       checkpointMetrics: {
-        iouOil: 'N/A (Clean)',
-        iouLookAlike: 'N/A',
+        iouOil: 'N/A (Clean Pass)',
+        iouLookAlike: '0.94 (Bathymetric Discrimination)',
         pixelAccuracy: 0.9998
       },
-      polygons: []
+      polygons: [
+        {
+          id: 'lookalike-ridge-01',
+          type: 'lookalike',
+          classification: 'Submerged Bathymetric Sand Ridge',
+          areaKm2: 4.82,
+          contrastDb: 0.1,
+          confidence: 0.98,
+          interpretation: 'Natural seabed bathymetric formation / underwater sandbank relief. Spectral NDOI confirms zero hydrocarbon presence.',
+          coordinates: [
+            [27.0413, 56.0560],
+            [27.0485, 56.0669],
+            [27.0558, 56.0813],
+            [27.0612, 56.0957],
+            [27.0576, 56.1065],
+            [27.0522, 56.1011],
+            [27.0485, 56.0885],
+            [27.0413, 56.0741],
+            [27.0359, 56.0633],
+            [27.0341, 56.0524]
+          ]
+        },
+        {
+          id: 'lookalike-ridge-02',
+          type: 'lookalike',
+          classification: 'Submerged Benthic Hook / Swirl Contour',
+          areaKm2: 1.65,
+          contrastDb: 0.15,
+          confidence: 0.97,
+          interpretation: 'Coastal shallow seabed contour. Optical absorption consistent with sandy sediment and benthic depth change.',
+          coordinates: [
+            [27.0341, 56.0488],
+            [27.0377, 56.0560],
+            [27.0305, 56.0596],
+            [27.0233, 56.0543],
+            [27.0269, 56.0470]
+          ]
+        },
+        {
+          id: 'lookalike-ridge-03',
+          type: 'lookalike',
+          classification: 'Shallow Coastal Sediment Bar',
+          areaKm2: 2.10,
+          contrastDb: 0.08,
+          confidence: 0.99,
+          interpretation: 'Submerged sediment bar near navigation channel approach. Zero capillary wave damping in radar backscatter.',
+          coordinates: [
+            [27.1062, 56.1137],
+            [27.1098, 56.1245],
+            [27.1008, 56.1281],
+            [27.0972, 56.1191]
+          ]
+        }
+      ]
     },
 
     drift: {
@@ -1378,9 +1231,9 @@ const SCENARIOS_DATA = {
       deflection: '15 deg right',
       particlesCount: 0,
       forecastSpreadKm: 0,
-      coastImpact: 'No Slick Detected',
+      coastImpact: 'No Slick Detected — Submerged Seabed Ridges Confirmed Clean',
       threatenedBox: 'N/A',
-      metoceanSource: 'Open-Meteo ERA5 10 m wind + CMEMS Bay of Bengal',
+      metoceanSource: 'Open-Meteo ERA5 10 m Winds + CMEMS Persian Gulf Hydrodynamic Model',
       originZonePolygon: [],
       backtrackPath: [],
       hindcastCone: [],
@@ -1389,21 +1242,21 @@ const SCENARIOS_DATA = {
     },
 
     environmental: {
-      meanWindSpeed: '6.2 m/s',
-      windDirection: 'SW (225°)',
-      meanCurrentSpeed: '0.31 m/s',
-      currentDirection: 'NE (045°)',
+      meanWindSpeed: '5.2 m/s',
+      windDirection: 'NW (315°)',
+      meanCurrentSpeed: '0.32 m/s',
+      currentDirection: 'SE (135°)',
       fieldResolution: '5 x 5 pts',
       cubeTimeSpan: '48 h',
-      metoceanDetail: 'Open-Meteo ERA5 + INCOIS Bay of Bengal Model'
+      metoceanDetail: 'Open-Meteo ERA5 + CMEMS Persian Gulf Surface Circulation'
     },
 
     pipeline: {
-      totalMs: 18400,
+      totalMs: 18600,
       stages: [
-        { name: 'DETECT', ms: 14200, pct: 77.2, label: 'SAR Patch Ingestion & Deep U-Net Segmentation (Clean Pass)' },
-        { name: 'CHAR', ms: 120, pct: 0.7, label: 'Zero-Polygon Quick Exit' },
-        { name: 'EO', ms: 3800, pct: 20.6, label: 'Cloud & Sun Glint Verification' },
+        { name: 'DETECT', ms: 14400, pct: 77.4, label: 'Optical Patch Ingestion & Look-Alike Discriminator (Clean Pass)' },
+        { name: 'CHAR', ms: 110, pct: 0.6, label: 'Bathymetric Feature Filter' },
+        { name: 'EO', ms: 3900, pct: 21.0, label: 'Sentinel-2 Multi-Spectral Cross-Check (NDOI: -0.14)' },
         { name: 'RENDER', ms: 20, pct: 0.1, label: 'Tile Bake' },
         { name: 'METOCEAN', ms: 1, pct: 0.01, label: 'Skipped' },
         { name: 'HINDCAST', ms: 0, pct: 0.0, label: 'Skipped (Clean Scene)' },
@@ -1419,13 +1272,35 @@ const SCENARIOS_DATA = {
 
     evidence: {
       oilPolygons: 0,
-      lookAlikesExcluded: 0,
-      opticalChipsCompared: 1,
-      vesselsInTheBox: 18,
+      lookAlikesExcluded: 3,
+      opticalChipsCompared: 3,
+      vesselsInTheBox: 14,
       passedTheFilter: 0,
       ensembleMembers: 0
     },
 
-    vessels: []
+    vessels: [],
+
+    backgroundTraffic: [
+      { name: 'MT HORMUZ VOYAGER', mmsi: '636019234', type: 'Container Vessel', lat: 27.0850, lon: 56.1200, heading: 125, speed: 14.5 },
+      { name: 'BANDAR PILOT 04', mmsi: '422004040', type: 'Harbor Pilot Craft', lat: 27.0980, lon: 56.0650, heading: 180, speed: 9.2 },
+      { name: 'GULF HORIZON', mmsi: '352001880', type: 'Bulk Carrier', lat: 27.0600, lon: 56.1400, heading: 110, speed: 12.0 },
+      { name: 'AL-MAJED PATROL', mmsi: '422009110', type: 'Coast Guard Patrol', lat: 27.0400, lon: 56.0800, heading: 290, speed: 22.0 }
+    ],
+
+    coastalVillages: [
+      { name: 'Shahid Rajaee Port Complex', latitude: 27.1050, longitude: 56.0600, distance_km: 3.2, bearing_deg: 320, population: 14500, place_type: 'Major Container Terminal Hub' },
+      { name: 'Qeshm Channel Marine Passage', latitude: 27.0200, longitude: 56.1000, distance_km: 6.1, bearing_deg: 175, population: 3200, place_type: 'Coastal Waterway & Mangrove Buffer' },
+      { name: 'Bandar Abbas Outer Anchorage', latitude: 27.0650, longitude: 56.1600, distance_km: 6.8, bearing_deg: 95, population: 0, place_type: 'Deep-Draft Anchorage Fairway' }
+    ]
   }
 };
+
+// Export to window for global browser availability
+if (typeof window !== 'undefined') {
+  window.SCENARIOS_DATA = SCENARIOS_DATA;
+}
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = SCENARIOS_DATA;
+}
+

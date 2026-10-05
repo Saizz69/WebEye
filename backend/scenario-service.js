@@ -158,398 +158,221 @@ class ScenarioService {
       }
     };
 
-    // 2. Scenario: Mumbai Offshore / Indian Coast Guard Sector (NOS-DCP Target)
-    this.scenarios['OS-MUMBAI-20240313'] = {
-      id: 'OS-MUMBAI-20240313',
-      title: 'Arabian Sea, Mumbai Offshore / ICG Sector',
-      shortName: 'Arabian Sea, Mumbai offshor...',
-      status: 'ACTIVE',
-      locationName: 'Bombay High / Mumbai Offshore Basin, Arabian Sea',
-      radarPassTime: '2024-03-13T01:03:42Z',
-      radarPassTimeDisplay: '2024-03-13 01:03:42 UTC',
-      sensor: 'Sentinel-1A IW GRD RTC',
-      orbit: 'Ascending (Track 085)',
+    // 2. Scenario: Caribbean Sea, Tobago Mystery Barge Disaster
+    this.scenarios['OS-TOBAGO-20240207'] = {
+      id: 'OS-TOBAGO-20240207',
+      title: 'Caribbean Sea, Tobago Island Mystery Barge Spill',
+      shortName: 'Caribbean Sea, Tobago spill...',
+      status: 'ACTIVE CRITICAL INCIDENT',
+      locationName: 'Cove Eco-Industrial Estate Offshore, Tobago, Caribbean Sea',
+      radarPassTime: '2024-02-08T10:14:30Z',
+      radarPassTimeDisplay: '2024-02-08 10:14:30 UTC',
+      sensor: 'Sentinel-1A IW GRD + Sentinel-2 MSI',
+      orbit: 'Descending (Track 107)',
       polarization: 'VV + VH',
       resolution: '10.0 m',
       detectorModel: 'U-Net (ResNet-34 Backbone)',
-      confidence: 0.81,
-      aisType: 'SIMULATED / SATELLITE AIS',
-      aisSource: 'AIS: Indian EEZ coastal traffic integrated with INCOIS metocean feeds.',
-      mapCenter: [19.2500, 71.4000],
+      confidence: 0.96,
+      aisType: 'RECORDED AIS & FORENSIC TRACK',
+      aisSource: 'AIS: 7 tracked vessels including suspect tug SOLO CREED & Trinidad & Tobago Coast Guard fleet.',
+      mapCenter: [11.1600, -61.3500],
       zoom: 10,
-      radarBBox: [[18.85, 70.95], [19.65, 71.85]],
-      opticalBBox: [[19.00, 71.15], [19.50, 71.65]],
-      sarImagePath: 'Picture36-2-1.png',
-      opticalImagePath: '2026-04-07-00-00-2026-04-07-23-59-sentinel-2-l2a-highlight-optimized-natural-color.jpg',
+      radarBBox: [[10.950, -62.050], [11.450, -60.400]],
+      opticalBBox: [[10.950, -62.050], [11.450, -60.400]],
+      sarImagePath: 'R2lKQkCsKNyKw2YH4cw0Uf-dJUBn4c6ZEkZAuFqr0bxmLIaRpL1NHiSGoX6bkTEUtWQsc4CmOi3HMsotBJ437ayVNMvhkgHo2Miu5EY6ApTCXObg1Egs26DVnvjlHHaxlPxv-Xpj51L9t12olnHzrjxZ0Es4MH-GpDYiiRLHirc.jpg',
+      opticalImagePath: 'R2lKQkCsKNyKw2YH4cw0Uf-dJUBn4c6ZEkZAuFqr0bxmLIaRpL1NHiSGoX6bkTEUtWQsc4CmOi3HMsotBJ437ayVNMvhkgHo2Miu5EY6ApTCXObg1Egs26DVnvjlHHaxlPxv-Xpj51L9t12olnHzrjxZ0Es4MH-GpDYiiRLHirc.jpg',
 
       summary: {
-        oilPolygonsCount: 18,
-        totalAreaKm2: 4.82,
-        largestAreaKm2: 1.65,
-        vesselsScored: 8,
-        candidateCount: 14,
-        driftAgeHours: 8.5,
-        originTimeDisplay: '2024-03-12 16:33:42 UTC',
-        zoneRadiusKm: 6.2,
-        zoneAreaKm2: 120.8,
-        coastImpact: 'High-seas EEZ drift (No immediate shoreline threat)',
-        threatenedBox: '18.90°N to 19.35°N, 71.10°E to 71.55°E',
-        pipelineLatencyMs: 44200
+        oilPolygonsCount: 2,
+        totalAreaKm2: 261.72,
+        largestAreaKm2: 260.50,
+        vesselsScored: 7,
+        candidateCount: 7,
+        driftAgeHours: 26.5,
+        originTimeDisplay: '2024-02-07 07:45:00 UTC',
+        zoneRadiusKm: 3.5,
+        zoneAreaKm2: 38.5,
+        coastImpact: 'Direct shoreline landfall on SW Tobago beaches & coastal reefs',
+        threatenedBox: '11.04°N to 11.28°N, 62.00°W to 60.90°W',
+        pipelineLatencyMs: 46800
       },
 
       detection: {
-        oilPolygons: 18,
+        oilPolygons: 2,
         lookAlikes: 0,
-        totalOilAreaKm2: 4.82,
-        largestAreaKm2: 1.65,
-        lengthKm: 3.42,
-        widthKm: 1.20,
-        perimeterKm: 11.80,
-        orientationDeg: 215,
-        compactness: 0.12,
-        contrastDb: 5.1,
-        confidence: 0.81,
-        driftAgeProxyHours: 8.5,
-        centroid: [19.2500, 71.4000],
+        totalOilAreaKm2: 261.72,
+        largestAreaKm2: 260.50,
+        lengthKm: 128.5,
+        widthKm: 3.40,
+        perimeterKm: 278.0,
+        orientationDeg: 285,
+        compactness: 0.08,
+        contrastDb: 6.8,
+        confidence: 0.96,
+        driftAgeProxyHours: 26.5,
+        centroid: [11.1522, -61.4308],
         polygons: [
           {
-            id: 'poly-mum-01',
+            id: 'poly-tob-plume-01',
             type: 'oil',
-            confidence: 0.95,
-            areaKm2: 1.65,
-            contrastDb: 5.8,
+            confidence: 0.98,
+            areaKm2: 260.50,
+            contrastDb: 6.8,
             coordinates: [
-              [19.280, 71.425], [19.270, 71.415], [19.250, 71.398],
-              [19.230, 71.380], [19.220, 71.370], [19.215, 71.375],
-              [19.230, 71.395], [19.255, 71.415], [19.275, 71.435], [19.280, 71.425]
+              [11.25712, -61.96750],
+              [11.24599, -61.91250],
+              [11.22003, -61.83000],
+              [11.20148, -61.72000],
+              [11.19777, -61.61000],
+              [11.20371, -61.50000],
+              [11.20519, -61.39000],
+              [11.19036, -61.33500],
+              [11.15326, -61.28000],
+              [11.13101, -61.22500],
+              [11.07537, -61.17000],
+              [11.06795, -61.08750],
+              [11.06573, -61.00500],
+              [11.06424, -60.95000],
+              [11.05089, -60.94312],
+              [11.05089, -61.00500],
+              [11.05237, -61.08750],
+              [11.05089, -61.17000],
+              [11.06053, -61.22500],
+              [11.12730, -61.28000],
+              [11.17923, -61.34187],
+              [11.19036, -61.40375],
+              [11.18442, -61.51375],
+              [11.18145, -61.62375],
+              [11.18665, -61.73375],
+              [11.20519, -61.84375],
+              [11.22374, -61.92625],
+              [11.23858, -61.98125],
+              [11.25712, -61.96750]
+            ]
+          },
+          {
+            id: 'poly-tob-reef-02',
+            type: 'oil',
+            confidence: 0.99,
+            areaKm2: 1.22,
+            contrastDb: 7.4,
+            coordinates: [
+              [11.068, -60.942],
+              [11.064, -60.952],
+              [11.052, -60.958],
+              [11.048, -60.945],
+              [11.056, -60.938],
+              [11.068, -60.942]
             ]
           }
         ]
       },
 
       drift: {
-        originTime: '2024-03-12T16:33:42Z',
-        originTimeDisplay: '2024-03-12 16:33:42 UTC',
-        originPosition: [19.3870, 71.5180],
-        zoneRadiusKm: 6.2,
-        bufferedRadiusKm: 7.8,
-        zoneAreaKm2: 120.8,
-        hoursBack: 8.5,
-        ageProxy: '8.5 h drift proxy',
+        originTime: '2024-02-07T07:45:00Z',
+        originTimeDisplay: '2024-02-07 07:45:00 UTC',
+        originPosition: [11.0600, -60.9500],
+        zoneRadiusKm: 3.5,
+        bufferedRadiusKm: 5.0,
+        zoneAreaKm2: 38.5,
+        hoursBack: 26.5,
+        ageProxy: '26.5 h continuous discharge from capsized hull',
         windFactor: '0.030 of 10 m wind',
-        deflection: '15 deg right (Ekman)',
+        deflection: '15 deg right (Ekman layer)',
         particlesCount: 50,
-        forecastSpreadKm: 19.4,
-        coastImpact: 'Stays offshore (West coast clearance > 65 NM)',
-        threatenedBox: '18.90 to 19.35 N, 71.10 to 71.55 E',
-        metoceanSource: 'INCOIS Ocean Forecast + ECMWF Reanalysis',
+        forecastSpreadKm: 42.0,
+        coastImpact: 'Severe coastal stranding on SW Tobago (Scarborough, Lambeau, Canoe Bay)',
+        threatenedBox: '11.04 to 11.28 N, -62.00 to -60.90 E',
+        metoceanSource: 'Open-Meteo ERA5 10 m Trade Winds + CMEMS GLOBAL_ANALYSISFORECAST_PHY_001_024 Caribbean Currents',
+
         originZonePolygon: [
-          [19.440, 71.480], [19.430, 71.560], [19.380, 71.575],
-          [19.330, 71.530], [19.340, 71.460], [19.440, 71.480]
+          [11.075, -60.930],
+          [11.075, -60.970],
+          [11.045, -60.970],
+          [11.045, -60.930],
+          [11.075, -60.930]
         ],
+
         backtrackPath: [
-          [19.2500, 71.4000], [19.2950, 71.4400], [19.3400, 71.4800], [19.3870, 71.5180]
+          [11.1522, -61.4308],
+          [11.1800, -61.3400],
+          [11.1300, -61.2250],
+          [11.0650, -61.1000],
+          [11.0600, -60.9500]
         ],
+
         hindcastCone: [
-          [19.2500, 71.4000], [19.440, 71.480], [19.430, 71.560],
-          [19.330, 71.530], [19.2500, 71.4000]
+          [11.1522, -61.4308],
+          [11.2050, -61.3500],
+          [11.1400, -61.2000],
+          [11.0750, -60.9300],
+          [11.0450, -60.9400],
+          [11.0450, -61.1500],
+          [11.1522, -61.4308]
         ],
+
         forecastPath: [
-          [19.2500, 71.4000], [19.1800, 71.3200], [19.1100, 71.2400], [19.0200, 71.1500]
+          [11.1522, -61.4308],
+          [11.2000, -61.7000],
+          [11.2500, -61.9800],
+          [11.3000, -62.2500]
         ],
+
         forecastCone: [
-          [19.2500, 71.4000], [19.1500, 71.3600], [18.9800, 71.2200],
-          [18.9400, 71.1400], [19.0800, 71.1000], [19.2500, 71.4000]
+          [11.1522, -61.4308],
+          [11.2400, -61.7000],
+          [11.3500, -62.1000],
+          [11.3800, -62.3000],
+          [11.2200, -62.3000],
+          [11.1400, -61.8000],
+          [11.1522, -61.4308]
         ]
       },
 
       environmental: {
-        meanWindSpeed: '5.8 m/s',
-        windDirection: 'NNE (030°)',
-        meanCurrentSpeed: '0.24 m/s',
-        currentDirection: 'SW (220°)',
+        meanWindSpeed: '7.8 m/s (Easterly Trades)',
+        windDirection: 'ENE (070°)',
+        meanCurrentSpeed: '0.38 m/s (Caribbean Current)',
+        currentDirection: 'WNW (285°)',
         fieldResolution: '5 x 5 pts',
-        cubeTimeSpan: '120 h',
-        metoceanDetail: 'INCOIS + ECMWF Reanalysis / CMEMS PHY_001_024'
+        cubeTimeSpan: '144 h',
+        metoceanDetail: 'CMEMS Global PHY_001_024 + Open-Meteo ERA5 10 m Easterly Trade Winds'
       },
 
       evidence: {
-        oilPolygons: 18,
+        oilPolygons: 2,
         lookAlikesExcluded: 0,
-        opticalChipsCompared: 1,
-        vesselsInTheBox: 14,
-        passedTheFilter: 8,
-        ensembleMembers: 50
-      }
-    };
-
-    // 3. Scenario: Caspian Sea, Baku Offshore Field
-    this.scenarios['OS-CASPIAN-20231014'] = {
-      id: 'OS-CASPIAN-20231014',
-      title: 'Caspian Sea, Baku Offshore Field (Biogenic Look-Alikes)',
-      shortName: 'Caspian Sea, Baku offshore field',
-      status: 'ACTIVE',
-      locationName: 'Absheron Peninsula, South Caspian Basin',
-      radarPassTime: '2023-10-14T02:44:45Z',
-      radarPassTimeDisplay: '2023-10-14 02:44:45 UTC',
-      sensor: 'Sentinel-1 IW GRD RTC',
-      orbit: 'Descending (Track 064)',
-      polarization: 'VV + VH',
-      resolution: '10.0 m',
-      detectorModel: 'U-Net (ResNet-34 Backbone)',
-      confidence: 0.54,
-      aisType: 'SIMULATED / SATELLITE AIS',
-      aisSource: 'AIS: Caspian shipping corridor traffic with low radar contrast look-alikes.',
-      mapCenter: [40.2500, 50.4000],
-      zoom: 10,
-      radarBBox: [[39.95, 49.90], [40.55, 50.90]],
-      opticalBBox: [[40.10, 50.15], [40.40, 50.65]],
-      sarImagePath: 'Picture36-2-1.png',
-      opticalImagePath: '2026-04-07-00-00-2026-04-07-23-59-sentinel-2-l2a-highlight-optimized-natural-color.jpg',
-
-      summary: {
-        oilPolygonsCount: 4,
-        totalAreaKm2: 1.18,
-        largestAreaKm2: 0.55,
-        vesselsScored: 5,
-        candidateCount: 8,
-        driftAgeHours: 5.2,
-        originTimeDisplay: '2023-10-13 21:32:45 UTC',
-        zoneRadiusKm: 4.1,
-        zoneAreaKm2: 52.8,
-        coastImpact: 'Stays offshore Baku archipelago',
-        threatenedBox: '40.10°N to 40.35°N, 50.25°E to 50.60°E',
-        pipelineLatencyMs: 38400
-      },
-
-      detection: {
-        oilPolygons: 4,
-        lookAlikes: 7,
-        totalOilAreaKm2: 1.18,
-        largestAreaKm2: 0.55,
-        lengthKm: 1.45,
-        widthKm: 0.65,
-        perimeterKm: 5.20,
-        orientationDeg: 85,
-        compactness: 0.18,
-        contrastDb: 1.8,
-        confidence: 0.54,
-        driftAgeProxyHours: 5.2,
-        centroid: [40.2500, 50.4000],
-        polygons: [
-          {
-            id: 'poly-cas-01',
-            type: 'oil',
-            confidence: 0.62,
-            areaKm2: 0.55,
-            contrastDb: 2.1,
-            coordinates: [
-              [40.260, 50.380], [40.255, 50.410], [40.245, 50.430],
-              [40.235, 50.415], [40.240, 50.385], [40.260, 50.380]
-            ]
-          }
-        ]
-      },
-
-      drift: {
-        originTime: '2023-10-13T21:32:45Z',
-        originTimeDisplay: '2023-10-13 21:32:45 UTC',
-        originPosition: [40.2600, 50.3950],
-        zoneRadiusKm: 4.1,
-        bufferedRadiusKm: 5.5,
-        zoneAreaKm2: 52.8,
-        hoursBack: 5.2,
-        ageProxy: '5.2 h drift proxy',
-        windFactor: '0.030 of 10 m wind',
-        deflection: '15 deg right',
-        particlesCount: 50,
-        forecastSpreadKm: 14.2,
-        coastImpact: 'Stays offshore',
-        threatenedBox: '40.10 to 40.35 N, 50.25 to 50.60 E',
-        metoceanSource: 'Open-Meteo ERA5 + Caspian Sea Circulation Model',
-        originZonePolygon: [
-          [40.290, 50.360], [40.295, 50.430], [40.240, 50.440],
-          [40.220, 50.370], [40.290, 50.360]
-        ],
-        backtrackPath: [
-          [40.2500, 50.4000], [40.2550, 50.3980], [40.2600, 50.3950]
-        ],
-        hindcastCone: [
-          [40.2500, 50.4000], [40.290, 50.360], [40.295, 50.430], [40.2500, 50.4000]
-        ],
-        forecastPath: [
-          [40.2500, 50.4000], [40.2400, 50.4500], [40.2300, 50.5200]
-        ],
-        forecastCone: [
-          [40.2500, 50.4000], [40.2600, 50.5000], [40.2100, 50.5500], [40.2500, 50.4000]
-        ]
-      },
-
-      environmental: {
-        meanWindSpeed: '3.6 m/s',
-        windDirection: 'W (270°)',
-        meanCurrentSpeed: '0.12 m/s',
-        currentDirection: 'E (090°)',
-        fieldResolution: '5 x 5 pts',
-        cubeTimeSpan: '96 h',
-        metoceanDetail: 'ERA5 Reanalysis + Caspian ROMS'
-      },
-
-      evidence: {
-        oilPolygons: 4,
-        lookAlikesExcluded: 7,
         opticalChipsCompared: 2,
-        vesselsInTheBox: 8,
-        passedTheFilter: 5,
+        vesselsInTheBox: 16,
+        passedTheFilter: 7,
         ensembleMembers: 50
       }
     };
 
-    // 4. Scenario: Santa Barbara Natural Seep (Negative False-Positive Benchmark)
-    this.scenarios['OS-SANTABARBARA-20230829'] = {
-      id: 'OS-SANTABARBARA-20230829',
-      title: 'Santa Barbara Channel Natural Seep (Clean Vessel Attribution)',
-      shortName: 'Santa Barbara Channel natu...',
-      status: 'NATURAL SEEP CONTROL / NO CULPRIT',
-      locationName: 'Coal Oil Point Seep Field, Santa Barbara Channel',
-      radarPassTime: '2023-08-29T01:59:10Z',
-      radarPassTimeDisplay: '2023-08-29 01:59:10 UTC',
-      sensor: 'Sentinel-1 IW GRD RTC',
-      orbit: 'Ascending (Track 115)',
-      polarization: 'VV + VH',
+    // 3. Scenario: Clean Sentinel-2 L2A Patrol Pass (Negative Control - Submerged Ridges)
+    this.scenarios['OS-CLEAN-TOBAGO-20240215'] = {
+      id: 'OS-CLEAN-TOBAGO-20240215',
+      title: 'Persian Gulf, Strait of Hormuz (Clean Patrol Pass — Underwater Bathymetric Ridges)',
+      shortName: 'Hormuz Pass, Clean Patrol...',
+      status: 'CLEAN SCENE / UNDERWATER RIDGES DISCRIMINATED',
+      locationName: 'Persian Gulf / Strait of Hormuz (Shahid Rajaee Sector)',
+      radarPassTime: '2026-04-07T11:45:00Z',
+      radarPassTimeDisplay: '2026-04-07 11:45:00 UTC',
+      sensor: 'Sentinel-2 MSI Level-2A (Highlight Optimized Natural Color)',
+      orbit: 'Descending (Track 124)',
+      polarization: 'RGB Bands B4-B3-B2 (10m GSD)',
       resolution: '10.0 m',
-      detectorModel: 'U-Net (ResNet-34 Backbone)',
-      confidence: 0.89,
-      aisType: 'RECORDED AIS',
-      aisSource: 'AIS: recorded US Coast Guard NAIS with USGS Seep catalog cross-check.',
-      mapCenter: [34.3500, -119.8800],
-      zoom: 11,
-      radarBBox: [[34.15, -120.15], [34.55, -119.60]],
-      opticalBBox: [[34.25, -120.00], [34.45, -119.75]],
-      sarImagePath: 'Picture36-2-1.png',
-      opticalImagePath: '2026-04-07-00-00-2026-04-07-23-59-sentinel-2-l2a-highlight-optimized-natural-color.jpg',
-
-      summary: {
-        oilPolygonsCount: 12,
-        totalAreaKm2: 2.64,
-        largestAreaKm2: 0.72,
-        vesselsScored: 9,
-        candidateCount: 9,
-        driftAgeHours: 6.0,
-        originTimeDisplay: '2023-08-28 19:59:10 UTC',
-        zoneRadiusKm: 2.5,
-        zoneAreaKm2: 19.6,
-        coastImpact: 'Natural seep line offshore Goleta',
-        threatenedBox: '34.30°N to 34.42°N, 119.95°W to 119.80°W',
-        pipelineLatencyMs: 41900
-      },
-
-      detection: {
-        oilPolygons: 12,
-        lookAlikes: 0,
-        totalOilAreaKm2: 2.64,
-        largestAreaKm2: 0.72,
-        lengthKm: 3.20,
-        widthKm: 0.85,
-        perimeterKm: 8.40,
-        orientationDeg: 280,
-        compactness: 0.11,
-        contrastDb: 6.2,
-        confidence: 0.89,
-        driftAgeProxyHours: 6.0,
-        centroid: [34.3500, -119.8800],
-        polygons: [
-          {
-            id: 'poly-sb-01',
-            type: 'oil',
-            confidence: 0.93,
-            areaKm2: 0.72,
-            contrastDb: 6.5,
-            coordinates: [
-              [34.360, -119.850], [34.355, -119.875], [34.348, -119.910],
-              [34.342, -119.905], [34.350, -119.870], [34.360, -119.850]
-            ]
-          }
-        ]
-      },
-
-      drift: {
-        originTime: '2023-08-28T19:59:10Z',
-        originTimeDisplay: '2023-08-28 19:59:10 UTC',
-        originPosition: [34.3820, -119.8450],
-        zoneRadiusKm: 2.5,
-        bufferedRadiusKm: 3.5,
-        zoneAreaKm2: 19.6,
-        hoursBack: 6.0,
-        ageProxy: '6.0 h drift proxy (Geological vent origin)',
-        windFactor: '0.030 of 10 m wind',
-        deflection: '15 deg right',
-        particlesCount: 50,
-        forecastSpreadKm: 8.5,
-        coastImpact: 'Remains in channel',
-        threatenedBox: '34.30 to 34.42 N, 119.95 to 119.80 W',
-        metoceanSource: 'Open-Meteo ERA5 + SCCOOS ROMS Coastal Currents',
-        originZonePolygon: [
-          [34.395, -119.860], [34.390, -119.830], [34.370, -119.832],
-          [34.372, -119.865], [34.395, -119.860]
-        ],
-        backtrackPath: [
-          [34.3500, -119.8800], [34.3650, -119.8620], [34.3820, -119.8450]
-        ],
-        hindcastCone: [
-          [34.3500, -119.8800], [34.370, -119.855], [34.395, -119.860], [34.3500, -119.8800]
-        ],
-        forecastPath: [
-          [34.3500, -119.8800], [34.3350, -119.9100], [34.3200, -119.9500]
-        ],
-        forecastCone: [
-          [34.3500, -119.8800], [34.320, -119.890], [34.300, -119.960], [34.3500, -119.8800]
-        ]
-      },
-
-      environmental: {
-        meanWindSpeed: '4.9 m/s',
-        windDirection: 'WNW (285°)',
-        meanCurrentSpeed: '0.14 m/s',
-        currentDirection: 'W (270°)',
-        fieldResolution: '5 x 5 pts',
-        cubeTimeSpan: '72 h',
-        metoceanDetail: 'SCCOOS ROMS + ERA5 10 m wind'
-      },
-
-      evidence: {
-        oilPolygons: 12,
-        lookAlikesExcluded: 0,
-        opticalChipsCompared: 1,
-        vesselsInTheBox: 12,
-        passedTheFilter: 9,
-        ensembleMembers: 50
-      }
-    };
-
-    // 5. Scenario: Clean Indian Ocean Patrol Pass (Negative Baseline)
-    this.scenarios['OS-CLEAN-INDIANOCEAN'] = {
-      id: 'OS-CLEAN-INDIANOCEAN',
-      title: 'Indian Ocean Patrol Pass (Clean Scene / Negative Control)',
-      shortName: 'Indian Ocean Patrol, Clean...',
-      status: 'CLEAN SCENE / NO OIL DETECTED',
-      locationName: 'Bay of Bengal / Andaman Sea Corridor',
-      radarPassTime: '2024-05-18T04:12:00Z',
-      radarPassTimeDisplay: '2024-05-18 04:12:00 UTC',
-      sensor: 'Sentinel-1 IW GRD RTC',
-      orbit: 'Descending (Track 088)',
-      polarization: 'VV + VH',
-      resolution: '10.0 m',
-      detectorModel: 'U-Net (ResNet-34 Backbone)',
+      detectorModel: 'U-Net (ResNet-34 Multi-Spectral Backbone)',
       confidence: 0.99,
       aisType: 'RECORDED AIS',
-      aisSource: 'AIS: normal transiting commercial traffic in sea lane.',
+      aisSource: 'AIS: 4 commercial vessels navigating fairway; optical dark features verified as submerged bathymetric ridges.',
       isCleanScene: true,
-      mapCenter: [11.8500, 91.2000],
-      zoom: 9,
-      radarBBox: [[11.20, 90.60], [12.50, 91.80]],
-      opticalBBox: [[11.50, 90.90], [12.20, 91.50]],
-      sarImagePath: 'Picture36-2-1.png',
+      hasAmbiguousLookalike: true,
+      mapCenter: [27.0750, 56.0950],
+      zoom: 12,
+      radarBBox: [[27.0150, 56.0200], [27.1350, 56.1750]],
+      opticalBBox: [[27.0150, 56.0200], [27.1350, 56.1750]],
+      sarImagePath: '2026-04-07-00-00-2026-04-07-23-59-sentinel-2-l2a-highlight-optimized-natural-color.jpg',
       opticalImagePath: '2026-04-07-00-00-2026-04-07-23-59-sentinel-2-l2a-highlight-optimized-natural-color.jpg',
 
       summary: {
@@ -559,17 +382,17 @@ class ScenarioService {
         vesselsScored: 0,
         candidateCount: 0,
         driftAgeHours: 0,
-        originTimeDisplay: 'N/A (Clean Water)',
+        originTimeDisplay: 'N/A (Clean Water / Bathymetric Ridges)',
         zoneRadiusKm: 0,
         zoneAreaKm2: 0,
-        coastImpact: 'Clean Water — No threat',
-        threatenedBox: 'N/A',
-        pipelineLatencyMs: 18400
+        coastImpact: 'Clean Water — Negative Control Verified (0 Oil Polygons, 3 Natural Ridges Discriminated)',
+        threatenedBox: 'N/A (No Slick Threat)',
+        pipelineLatencyMs: 18600
       },
 
       detection: {
         oilPolygons: 0,
-        lookAlikes: 0,
+        lookAlikes: 3,
         totalOilAreaKm2: 0.0,
         largestAreaKm2: 0.0,
         lengthKm: 0.0,
@@ -577,17 +400,70 @@ class ScenarioService {
         perimeterKm: 0.0,
         orientationDeg: 0,
         compactness: 0.0,
-        contrastDb: 0.2,
+        contrastDb: 0.1,
         confidence: 0.99,
         driftAgeProxyHours: 0.0,
-        centroid: [11.8500, 91.2000],
-        polygons: []
+        centroid: null,
+        polygons: [
+          {
+            id: 'lookalike-ridge-01',
+            type: 'lookalike',
+            classification: 'Submerged Bathymetric Sand Ridge',
+            areaKm2: 4.82,
+            contrastDb: 0.1,
+            confidence: 0.98,
+            interpretation: 'Natural seabed bathymetric formation / underwater sandbank relief. Spectral NDOI confirms zero hydrocarbon presence.',
+            coordinates: [
+              [27.0413, 56.0560],
+              [27.0485, 56.0669],
+              [27.0558, 56.0813],
+              [27.0612, 56.0957],
+              [27.0576, 56.1065],
+              [27.0522, 56.1011],
+              [27.0485, 56.0885],
+              [27.0413, 56.0741],
+              [27.0359, 56.0633],
+              [27.0341, 56.0524]
+            ]
+          },
+          {
+            id: 'lookalike-ridge-02',
+            type: 'lookalike',
+            classification: 'Submerged Benthic Hook / Swirl Contour',
+            areaKm2: 1.65,
+            contrastDb: 0.15,
+            confidence: 0.97,
+            interpretation: 'Coastal shallow seabed contour. Optical absorption consistent with sandy sediment and benthic depth change.',
+            coordinates: [
+              [27.0341, 56.0488],
+              [27.0377, 56.0560],
+              [27.0305, 56.0596],
+              [27.0233, 56.0543],
+              [27.0269, 56.0470]
+            ]
+          },
+          {
+            id: 'lookalike-ridge-03',
+            type: 'lookalike',
+            classification: 'Shallow Coastal Sediment Bar',
+            areaKm2: 2.10,
+            contrastDb: 0.08,
+            confidence: 0.99,
+            interpretation: 'Submerged sediment bar near navigation channel approach. Zero capillary wave damping in radar backscatter.',
+            coordinates: [
+              [27.1062, 56.1137],
+              [27.1098, 56.1245],
+              [27.1008, 56.1281],
+              [27.0972, 56.1191]
+            ]
+          }
+        ]
       },
 
       drift: {
         originTime: null,
         originTimeDisplay: 'N/A (Clean Water)',
-        originPosition: [11.8500, 91.2000],
+        originPosition: null,
         zoneRadiusKm: 0,
         bufferedRadiusKm: 0,
         zoneAreaKm2: 0,
@@ -597,9 +473,9 @@ class ScenarioService {
         deflection: '15 deg right',
         particlesCount: 0,
         forecastSpreadKm: 0,
-        coastImpact: 'No Slick Detected',
+        coastImpact: 'No Slick Detected — Submerged Seabed Ridges Confirmed Clean',
         threatenedBox: 'N/A',
-        metoceanSource: 'Open-Meteo ERA5 10 m wind + CMEMS Bay of Bengal',
+        metoceanSource: 'Open-Meteo ERA5 10 m Winds + CMEMS Persian Gulf Hydrodynamic Model',
         originZonePolygon: [],
         backtrackPath: [],
         hindcastCone: [],
@@ -608,20 +484,20 @@ class ScenarioService {
       },
 
       environmental: {
-        meanWindSpeed: '6.2 m/s',
-        windDirection: 'SW (225°)',
-        meanCurrentSpeed: '0.31 m/s',
-        currentDirection: 'NE (045°)',
+        meanWindSpeed: '5.2 m/s',
+        windDirection: 'NW (315°)',
+        meanCurrentSpeed: '0.32 m/s',
+        currentDirection: 'SE (135°)',
         fieldResolution: '5 x 5 pts',
         cubeTimeSpan: '48 h',
-        metoceanDetail: 'Open-Meteo ERA5 + INCOIS Bay of Bengal Model'
+        metoceanDetail: 'Open-Meteo ERA5 + CMEMS Persian Gulf Surface Circulation'
       },
 
       evidence: {
         oilPolygons: 0,
-        lookAlikesExcluded: 0,
-        opticalChipsCompared: 1,
-        vesselsInTheBox: 18,
+        lookAlikesExcluded: 3,
+        opticalChipsCompared: 3,
+        vesselsInTheBox: 14,
         passedTheFilter: 0,
         ensembleMembers: 0
       }

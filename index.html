@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WebEye — Maritime SAR Satellite Oil Spill Detection & AIS Attribution Console (SIH26143)</title>
+  <title>WebEye — Maritime SAR Satellite Oil Spill Detection & Forensic Attribution (SIH26143)</title>
   
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
-  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/main.css?v=3.5.0">
   
   <!-- Modern Typography from Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,6 +28,7 @@
         <button class="nav-tab-btn active" data-tab="investigate">INVESTIGATE</button>
         <button class="nav-tab-btn" data-tab="drift">DRIFT</button>
         <button class="nav-tab-btn" data-tab="vessels">VESSELS</button>
+        <button class="nav-tab-btn" data-tab="alerts">ALERTS / VILLAGES</button>
         <button class="nav-tab-btn" data-tab="method">METHOD</button>
         <button class="nav-tab-btn" data-tab="data">DATA</button>
       </nav>
@@ -51,7 +52,7 @@
         <input type="text" id="search-vessel-input" placeholder="Search MMSI or vessel name">
       </div>
 
-      <div class="utc-clock" id="header-utc-clock">UTC 19:26:57</div>
+      <div class="utc-clock" id="header-utc-clock">UTC 09:45:28</div>
     </div>
   </header>
 
@@ -74,36 +75,20 @@
             <div class="scene-card-time">2023-09-24 00:02:27 UTC</div>
           </div>
 
-          <div class="scene-card" data-scene-id="OS-MUMBAI-20240313">
+          <div class="scene-card" data-scene-id="OS-TOBAGO-20240207">
             <div class="scene-card-header">
-              <div class="scene-card-title">Arabian Sea, Mumbai offshor...</div>
-              <span class="ais-badge simulated">SIMULATED AIS</span>
-            </div>
-            <div class="scene-card-time">2024-03-13 01:03:42 UTC</div>
-          </div>
-
-          <div class="scene-card" data-scene-id="OS-CASPIAN-20231014">
-            <div class="scene-card-header">
-              <div class="scene-card-title">Caspian Sea, Baku offshore field</div>
-              <span class="ais-badge simulated">SIMULATED AIS</span>
-            </div>
-            <div class="scene-card-time">2023-10-14 02:44:45 UTC</div>
-          </div>
-
-          <div class="scene-card" data-scene-id="OS-SANTABARBARA-20230829">
-            <div class="scene-card-header">
-              <div class="scene-card-title">Santa Barbara Channel natu...</div>
+              <div class="scene-card-title">Caribbean Sea, Tobago spill...</div>
               <span class="ais-badge recorded">RECORDED AIS</span>
             </div>
-            <div class="scene-card-time">2023-08-29 01:59:10 UTC</div>
+            <div class="scene-card-time">2024-02-08 10:14:30 UTC</div>
           </div>
 
-          <div class="scene-card" data-scene-id="OS-CLEAN-INDIANOCEAN">
+          <div class="scene-card" data-scene-id="OS-CLEAN-TOBAGO-20240215">
             <div class="scene-card-header">
-              <div class="scene-card-title">Indian Ocean Patrol, Clean...</div>
-              <span class="ais-badge recorded">RECORDED AIS</span>
+              <div class="scene-card-title">Strait of Hormuz, Clean Patrol...</div>
+              <span class="ais-badge clean">CLEAN SCENE</span>
             </div>
-            <div class="scene-card-time">2024-05-18 04:12:00 UTC</div>
+            <div class="scene-card-time">2026-04-07 11:45:00 UTC</div>
           </div>
 
         </div>
@@ -170,13 +155,11 @@
         <div class="rail-section-title">DATA SOURCES</div>
         <table class="data-source-table">
           <tbody>
-            <tr><td>Detector</td><td>U-Net</td></tr>
-            <tr><td>Metocean cubes</td><td>5</td></tr>
-            <tr><td>AIS rows</td><td>441,668</td></tr>
-            <tr><td>AIS vessels</td><td>638</td></tr>
-            <tr><td>Scenes indexed</td><td>5</td></tr>
-            <tr><td>Run history</td><td>73.6 MB</td></tr>
-            <tr><td>Network</td><td class="text-green font-semibold">not used at runtime</td></tr>
+            <tr><td>Detector</td><td>U-Net (ResNet-34)</td></tr>
+            <tr><td>Metocean</td><td>Lagrangian RK4 Solver</td></tr>
+            <tr><td>AIS Forensics</td><td>Multi-Factor Bayesian</td></tr>
+            <tr><td>Alert Hub</td><td>OSM Overpass + SMS</td></tr>
+            <tr><td>Network</td><td class="text-green font-semibold">Offline Resilient</td></tr>
           </tbody>
         </table>
       </div>
@@ -192,10 +175,10 @@
           <span class="scenario-title-id" id="header-scenario-id">OS-GOMMC-20230924</span>
           <span class="status-badge active" id="header-status-badge">ACTIVE</span>
           <span class="scenario-subtitle" id="header-scenario-subtitle">
-            Radar pass 2023-09-24 00:02:27 UTC • Sensor Sentinel-1 IW GRD RTC • Detector U-Net • Confidence 0.73
+            Radar pass 2023-09-24 00:02:27 UTC • Sensor Sentinel-1 IW GRD RTC • Detector U-Net (ResNet-34 Backbone) • Confidence 0.73
           </span>
         </div>
-        <div class="coords-badge" id="header-coords-badge">28.9384° N, 88.9335° W</div>
+        <div class="coords-badge" id="header-coords-badge">28.9662° N, 88.9127° W</div>
       </div>
 
       <!-- MAP CANVAS -->
@@ -307,12 +290,20 @@
             <div class="layer-swatch bg-vessels"></div>
           </div>
 
+          <div class="layer-item">
+            <label class="layer-label-wrap">
+              <input type="checkbox" class="layer-checkbox" data-layer="coastalVillages" checked>
+              <span>🏘️ Coastal Villages & Buffer</span>
+            </label>
+            <div class="layer-swatch" style="background: #10b981;"></div>
+          </div>
+
         </div>
 
         <!-- FLOATING CURSOR READOUT -->
         <div class="floating-coords-bar">
-          <span id="cursor-lat">lat 28.9384° N</span>
-          <span id="cursor-lon">lon 88.9335° W</span>
+          <span id="cursor-lat">lat 28.7019° N</span>
+          <span id="cursor-lon">lon 88.8602° W</span>
         </div>
 
       </div>
@@ -326,7 +317,7 @@
 
         <button id="btn-snap-radar" class="btn-radar-snap">Radar pass</button>
 
-        <div class="timeline-time-readout" id="timeline-time-display">2023-09-23 18:58 UTC</div>
+        <div class="timeline-time-readout" id="timeline-time-display">2023-09-24 00:02:27 UTC</div>
 
         <div class="timeline-slider-wrap">
           <input type="range" id="timeline-slider" class="timeline-slider" min="0" max="100" step="0.1" value="57.1">
@@ -345,7 +336,7 @@
         <div class="telemetry-col">
           <div class="telemetry-col-title">
             <span>PIPELINE</span>
-            <span class="font-mono text-cyan" id="pipeline-total-time">51.8 s</span>
+            <span class="font-mono text-cyan" id="pipeline-total-time">48.2 s</span>
           </div>
           <div class="pipeline-stage-list" id="pipeline-stage-list"></div>
         </div>
@@ -372,7 +363,7 @@
             </div>
           </div>
           <div class="env-source-caption" id="env-source-detail">
-            Open-Meteo ERA5 10 m wind + CMEMS GLOBAL_ANALYSISFORECAST_PHY_001_024 currents (cached 2026-09-05)
+            Open-Meteo ERA5 10 m wind + CMEMS Global Ocean Physics (INCOIS/ERA5)
           </div>
         </div>
 
@@ -404,11 +395,12 @@
 
     </main>
 
-    <!-- RIGHT PANEL: INVESTIGATE, DRIFT, VESSELS, METHOD, DATA -->
+    <!-- RIGHT PANEL: INVESTIGATE, DRIFT, VESSELS, ALERTS, METHOD, DATA -->
     <aside class="right-panel">
       <div id="tab-pane-investigate" class="tab-pane"></div>
       <div id="tab-pane-drift" class="tab-pane hidden"></div>
       <div id="tab-pane-vessels" class="tab-pane hidden"></div>
+      <div id="tab-pane-alerts" class="tab-pane hidden"></div>
       <div id="tab-pane-method" class="tab-pane hidden"></div>
       <div id="tab-pane-data" class="tab-pane hidden"></div>
     </aside>
@@ -431,13 +423,13 @@
 
   <!-- JAVASCRIPT MODULES -->
   <script src="vendor/leaflet/leaflet.js"></script>
-  <script src="js/data-store.js"></script>
-  <script src="js/attribution-engine.js"></script>
-  <script src="js/drift-engine.js"></script>
-  <script src="js/chart-engine.js"></script>
-  <script src="js/map-engine.js"></script>
-  <script src="js/timeline.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/data-store.js?v=3.5.0"></script>
+  <script src="js/attribution-engine.js?v=3.5.0"></script>
+  <script src="js/drift-engine.js?v=3.5.0"></script>
+  <script src="js/chart-engine.js?v=3.5.0"></script>
+  <script src="js/map-engine.js?v=3.5.0"></script>
+  <script src="js/timeline.js?v=3.5.0"></script>
+  <script src="js/app.js?v=3.5.0"></script>
 
 </body>
 </html>

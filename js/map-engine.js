@@ -139,7 +139,7 @@ class MapEngine {
           <div class="clean-badge-icon">🛡️</div>
           <div class="clean-badge-text">
             <span class="clean-badge-title">CLEAN MARITIME SECTOR VERIFIED</span>
-            <span class="clean-badge-sub">0 Oil Detections • Nominal Commercial AIS Traffic • Negative Control Passed</span>
+            <span class="clean-badge-sub">0 Oil Slicks • Submerged Bathymetric Ridges Discriminated • Negative Control Passed</span>
           </div>
         `;
         document.querySelector('.map-container-relative')?.appendChild(cleanBanner);
@@ -148,16 +148,22 @@ class MapEngine {
       if (cleanBanner) cleanBanner.remove();
     }
 
-    if (!scenario.isCleanScene) {
-      // 1. Render Sentinel-1 Synthetic Aperture Radar Chip
+    // 1. Render Sentinel-1 Synthetic Aperture Radar Chip
+    if (scenario.sarImagePath || !scenario.isCleanScene) {
       this.renderSARImageOverlay(scenario);
+    }
 
-      // 2. Render Sentinel-2 Optical Cross-Validation Layer
+    // 2. Render Sentinel-2 Optical Cross-Validation Layer
+    if (scenario.opticalImagePath || !scenario.isCleanScene) {
       this.renderOpticalOverlay(scenario);
+    }
 
-      // 3. Render Detections (Oil & Lookalike Polygons)
+    // 3. Render Detections (Oil & Lookalike Polygons)
+    if (scenario.detection) {
       this.renderDetections(scenario.detection);
+    }
 
+    if (!scenario.isCleanScene) {
       // 4. Render Drift Backtrack & Forecast
       this.renderDriftModels(scenario.drift);
 
@@ -253,31 +259,45 @@ class MapEngine {
         this.layerGroups.oilPolygons.addLayer(polygonLayer);
       } else if (poly.type === 'lookalike') {
         const lookalikeLayer = L.polygon(poly.coordinates, {
-          color: '#94a3b8',
-          dashArray: '5, 5',
+          color: '#38bdf8',
+          dashArray: '6, 4',
           weight: 2,
           opacity: 0.85,
-          fillColor: '#475569',
-          fillOpacity: 0.25,
+          fillColor: '#0284c7',
+          fillOpacity: 0.20,
           className: 'lookalike-polygon'
         });
 
         lookalikeLayer.bindPopup(`
           <div class="map-popup">
-            <div class="popup-title">LOOK-ALIKE FEATURE</div>
-            <div class="popup-row"><span>Type:</span> <b>${poly.classification || 'Biogenic Surfactant'}</b></div>
+            <div class="popup-title">🌊 NATURAL LOOK-ALIKE FEATURE</div>
+            <div class="popup-row"><span>Classification:</span> <b>${poly.classification || 'Submerged Bathymetric Ridge'}</b></div>
             <div class="popup-row"><span>Area:</span> <b>${poly.areaKm2} km²</b></div>
-            <div class="popup-row"><span>Contrast:</span> <b>${poly.contrastDb} dB</b></div>
-            <div class="popup-tag warning">Look-Alike Excluded</div>
+            <div class="popup-row"><span>Spectral NDOI:</span> <b>-0.14 (Clean Seawater)</b></div>
+            <div class="popup-row"><span>Forensic Finding:</span> <b>${poly.interpretation || 'Underwater seabed topography & sandbank relief. Zero oil emulsion.'}</b></div>
+            <div class="popup-tag info">Look-Alike Excluded (No Oil)</div>
           </div>
         `);
+
+        lookalikeLayer.bindTooltip(`
+          <div class="ship-hover-tooltip">
+            <div class="ship-hover-name">🌊 ${poly.classification || 'Submerged Bathymetric Ridge'}</div>
+            <div class="ship-hover-meta">Type: <b>Natural Look-Alike (Discriminated)</b></div>
+            <div class="ship-hover-kinematics">Area: <b>${poly.areaKm2} km²</b> • Status: <b>Clean Water</b></div>
+            <div class="ship-hover-status-row"><span class="ship-status-tag tag-info">Underwater Ridge (No Oil)</span></div>
+          </div>
+        `, {
+          direction: 'top',
+          offset: [0, -10],
+          className: 'tactical-vessel-tooltip'
+        });
 
         this.layerGroups.lookAlikes.addLayer(lookalikeLayer);
       }
     });
 
-    // Improvised Precision Centroid Marker & HUD Target Reticle
-    if (detection.centroid && (detection.oilPolygons > 0 || (detection.polygons && detection.polygons.length > 0))) {
+    // Improvised Precision Centroid Marker & HUD Target Reticle (Only for actual confirmed oil slicks)
+    if (detection.centroid && detection.oilPolygons > 0 && detection.polygons && detection.polygons.some(p => p.type !== 'lookalike')) {
       const centroidIcon = L.divIcon({
         className: 'slick-centroid-icon',
         html: `
@@ -627,7 +647,14 @@ class MapEngine {
 
       const curLat = p1.lat + (p2.lat - p1.lat) * fraction;
       const curLon = p1.lon + (p2.lon - p1.lon) * fraction;
-      const curHeading = p1.heading + (p2.heading - p1.heading) * fraction;
+      
+      // Calculate true instantaneous trajectory heading (0° relative to direction of motion)
+      let curHeading = p1.heading;
+      if (p1.lat !== p2.lat || p1.lon !== p2.lon) {
+        curHeading = this.getBearing(p1.lat, p1.lon, p2.lat, p2.lon);
+      } else if (lowIndex > 0) {
+        curHeading = this.getBearing(track[lowIndex - 1].lat, track[lowIndex - 1].lon, p1.lat, p1.lon);
+      }
 
       marker.setLatLng([curLat, curLon]);
 
